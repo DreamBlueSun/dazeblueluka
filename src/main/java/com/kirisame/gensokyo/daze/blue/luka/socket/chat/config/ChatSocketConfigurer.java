@@ -1,7 +1,7 @@
-package com.kirisame.gensokyo.daze.blue.socket.chat.config;
+package com.kirisame.gensokyo.daze.blue.luka.socket.chat.config;
 
-import com.kirisame.gensokyo.daze.blue.socket.chat.ChatHandler;
-import com.kirisame.gensokyo.daze.blue.socket.chat.ChatInterceptor;
+import com.kirisame.gensokyo.daze.blue.luka.socket.chat.ChatHandler;
+import com.kirisame.gensokyo.daze.blue.luka.socket.chat.ChatInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;

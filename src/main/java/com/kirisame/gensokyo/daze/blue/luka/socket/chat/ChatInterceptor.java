@@ -1,4 +1,4 @@
-package com.kirisame.gensokyo.daze.blue.socket.chat;
+package com.kirisame.gensokyo.daze.blue.luka.socket.chat;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.http.server.ServerHttpRequest;

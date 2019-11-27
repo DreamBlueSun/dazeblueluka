@@ -1,4 +1,4 @@
-package com.kirisame.gensokyo.daze.blue.socket.chat;
+package com.kirisame.gensokyo.daze.blue.luka.socket.chat;
 
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.web.socket.CloseStatus;
