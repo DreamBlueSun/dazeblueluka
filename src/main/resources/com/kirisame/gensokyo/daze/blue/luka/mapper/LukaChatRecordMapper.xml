@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kirisame.gensokyo.daze.blue.luka.mapper.LukaChatRecordMapper">
+  <resultMap id="BaseResultMap" type="com.kirisame.gensokyo.daze.blue.luka.entity.LukaChatRecord">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="received_message" jdbcType="VARCHAR" property="receivedMessage" />
+    <result column="received_time" jdbcType="TIMESTAMP" property="receivedTime" />
+    <result column="received_from" jdbcType="INTEGER" property="receivedFrom" />
+    <result column="replied_status" jdbcType="INTEGER" property="repliedStatus" />
+    <result column="replied_message" jdbcType="VARCHAR" property="repliedMessage" />
+    <result column="replied_time" jdbcType="TIMESTAMP" property="repliedTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, received_message, received_time, received_from, replied_status, replied_message, 
+    replied_time
+  </sql>
+  <select id="selectByExample" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.LukaChatRecordExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from luka_chat_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from luka_chat_record
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from luka_chat_record
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.LukaChatRecordExample">
+    delete from luka_chat_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.LukaChatRecord">
+    insert into luka_chat_record (id, received_message, received_time, 
+      received_from, replied_status, replied_message, 
+      replied_time)
+    values (#{id,jdbcType=VARCHAR}, #{receivedMessage,jdbcType=VARCHAR}, #{receivedTime,jdbcType=TIMESTAMP}, 
+      #{receivedFrom,jdbcType=INTEGER}, #{repliedStatus,jdbcType=INTEGER}, #{repliedMessage,jdbcType=VARCHAR}, 
+      #{repliedTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.LukaChatRecord">
+    insert into luka_chat_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="receivedMessage != null">
+        received_message,
+      </if>
+      <if test="receivedTime != null">
+        received_time,
+      </if>
+      <if test="receivedFrom != null">
+        received_from,
+      </if>
+      <if test="repliedStatus != null">
+        replied_status,
+      </if>
+      <if test="repliedMessage != null">
+        replied_message,
+      </if>
+      <if test="repliedTime != null">
+        replied_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="receivedMessage != null">
+        #{receivedMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="receivedTime != null">
+        #{receivedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receivedFrom != null">
+        #{receivedFrom,jdbcType=INTEGER},
+      </if>
+      <if test="repliedStatus != null">
+        #{repliedStatus,jdbcType=INTEGER},
+      </if>
+      <if test="repliedMessage != null">
+        #{repliedMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="repliedTime != null">
+        #{repliedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.LukaChatRecordExample" resultType="java.lang.Long">
+    select count(*) from luka_chat_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update luka_chat_record
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receivedMessage != null">
+        received_message = #{record.receivedMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receivedTime != null">
+        received_time = #{record.receivedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.receivedFrom != null">
+        received_from = #{record.receivedFrom,jdbcType=INTEGER},
+      </if>
+      <if test="record.repliedStatus != null">
+        replied_status = #{record.repliedStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.repliedMessage != null">
+        replied_message = #{record.repliedMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.repliedTime != null">
+        replied_time = #{record.repliedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update luka_chat_record
+    set id = #{record.id,jdbcType=VARCHAR},
+      received_message = #{record.receivedMessage,jdbcType=VARCHAR},
+      received_time = #{record.receivedTime,jdbcType=TIMESTAMP},
+      received_from = #{record.receivedFrom,jdbcType=INTEGER},
+      replied_status = #{record.repliedStatus,jdbcType=INTEGER},
+      replied_message = #{record.repliedMessage,jdbcType=VARCHAR},
+      replied_time = #{record.repliedTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.LukaChatRecord">
+    update luka_chat_record
+    <set>
+      <if test="receivedMessage != null">
+        received_message = #{receivedMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="receivedTime != null">
+        received_time = #{receivedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receivedFrom != null">
+        received_from = #{receivedFrom,jdbcType=INTEGER},
+      </if>
+      <if test="repliedStatus != null">
+        replied_status = #{repliedStatus,jdbcType=INTEGER},
+      </if>
+      <if test="repliedMessage != null">
+        replied_message = #{repliedMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="repliedTime != null">
+        replied_time = #{repliedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.LukaChatRecord">
+    update luka_chat_record
+    set received_message = #{receivedMessage,jdbcType=VARCHAR},
+      received_time = #{receivedTime,jdbcType=TIMESTAMP},
+      received_from = #{receivedFrom,jdbcType=INTEGER},
+      replied_status = #{repliedStatus,jdbcType=INTEGER},
+      replied_message = #{repliedMessage,jdbcType=VARCHAR},
+      replied_time = #{repliedTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
