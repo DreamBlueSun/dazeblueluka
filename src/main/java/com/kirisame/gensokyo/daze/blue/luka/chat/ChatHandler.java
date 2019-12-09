@@ -1,6 +1,8 @@
-package com.kirisame.gensokyo.daze.blue.luka.socket.chat;
+package com.kirisame.gensokyo.daze.blue.luka.chat;
 
 import com.alibaba.fastjson.JSONObject;
+import com.kirisame.gensokyo.daze.blue.luka.service.LuKaChatService;
+import com.kirisame.gensokyo.daze.blue.luka.util.SpringUtils;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -17,12 +19,14 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class ChatHandler extends TextWebSocketHandler {
 
-    private Map<String, WebSocketSession> clientMap = new ConcurrentHashMap<>();
+    private LuKaChatService chatService = SpringUtils.getBean(LuKaChatService.class);
+
+    private Map<String, String> clientMap = new ConcurrentHashMap<>();
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         String userName = (String) session.getAttributes().get("userName");
-        clientMap.put(userName, session);
+        clientMap.put(session.getId(), userName);
         super.afterConnectionEstablished(session);
     }
 
@@ -32,17 +36,15 @@ public class ChatHandler extends TextWebSocketHandler {
         byte[] bytes = message.asBytes();
         String messageContent = new String(bytes);
         JSONObject jsonObject = JSONObject.parseObject(messageContent);
-        //获取接收者
-        String to = (String) jsonObject.get("to");
-        //要发送的消息
+        //获取发送者名字
+        String name = clientMap.get(session.getId());
+        //发送过来的消息
         String content = (String) jsonObject.get("content");
-        //获取接收者
-        WebSocketSession session1 = clientMap.get(to);
-        //获取接收者
-        String from = (String) session.getAttributes().get("userName");
-        if (session1 != null && session1.isOpen()) {
+        //处理消息
+        String resultMsg = chatService.handleMessage(content, name);
+        if (session != null && session.isOpen()) {
             //发送消息
-            session1.sendMessage(new TextMessage("收到" + from + "发送的消息,内容是:====>" + content));
+            session.sendMessage(new TextMessage(resultMsg));
         }
     }
 

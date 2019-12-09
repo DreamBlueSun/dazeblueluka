@@ -1,4 +1,4 @@
-package com.kirisame.gensokyo.daze.blue.luka.socket.chat;
+package com.kirisame.gensokyo.daze.blue.luka.chat;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.http.server.ServerHttpRequest;
@@ -6,6 +6,7 @@ import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor;
 
+import java.net.URLDecoder;
 import java.util.Map;
 
 /**
@@ -21,7 +22,8 @@ public class ChatInterceptor extends HttpSessionHandshakeInterceptor {
         String requestUrl = request.getURI().toString();
         String userName = StringUtils.substring(requestUrl, requestUrl.lastIndexOf("/") + 1);
         //放入attributes
-        attributes.put("userName", userName);
+        String userNameDecode = URLDecoder.decode(userName, "UTF-8");
+        attributes.put("userName", userNameDecode);
         return super.beforeHandshake(request, response, wsHandler, attributes);
     }
 

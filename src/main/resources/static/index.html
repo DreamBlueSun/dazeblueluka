@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
+    <script src="common/jquery/jquery-3.4.0.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="common/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="common/js/path.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript">
         var websocket = null;
 
@@ -12,9 +14,8 @@
             var userName = document.getElementById("userName").value;
             //判断浏览器是否支持websocket
             if ('WebSocket' in window) {
-                console.log("ws://" + document.location.host + "/webSocket/" + userName)
-                websocket = new WebSocket("ws://" + document.location.host + "/webSocket/" + userName);
-
+                var url = "ws://" + document.location.host + pathHead + "webSocket/" + roomName + "/" + userName;
+                web_socket = new WebSocket(url);
                 websocket.onopen = function () {
                     setMessage("连接成功")
                 }
@@ -48,10 +49,12 @@
 
         //发送消息
         function sendmessage() {
-            var to = document.getElementById("to").value;//接收者
-            var msg = document.getElementById("content").value;//获取要发送的内容
-            if (websocket != null) {//防止有神经病上来就点发送
-                var message='{"to":"'+to+'","content":"'+msg+'"}';
+            //接收者
+            var to = document.getElementById("to").value;
+            //获取要发送的内容
+            var msg = document.getElementById("content").value;
+            if (websocket != null) {
+                var message = '{"to":"' + to + '","content":"' + msg + '"}';
                 websocket.send(message)
             }
 
