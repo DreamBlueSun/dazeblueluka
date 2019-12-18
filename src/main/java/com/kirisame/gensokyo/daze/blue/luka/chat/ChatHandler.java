@@ -1,7 +1,11 @@
 package com.kirisame.gensokyo.daze.blue.luka.chat;
 
 import com.alibaba.fastjson.JSONObject;
-import com.kirisame.gensokyo.daze.blue.luka.service.LuKaChatService;
+import com.kirisame.gensokyo.daze.blue.luka.entity.bo.Player;
+import com.kirisame.gensokyo.daze.blue.luka.entity.bo.SentenceParse;
+import com.kirisame.gensokyo.daze.blue.luka.service.ChatRecordService;
+import com.kirisame.gensokyo.daze.blue.luka.service.SentenceGroupService;
+import com.kirisame.gensokyo.daze.blue.luka.service.SentenceParseService;
 import com.kirisame.gensokyo.daze.blue.luka.util.SpringUtils;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
@@ -19,14 +23,21 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class ChatHandler extends TextWebSocketHandler {
 
-    private LuKaChatService chatService = SpringUtils.getBean(LuKaChatService.class);
+    private ChatRecordService chatRecordService = SpringUtils.getBean(ChatRecordService.class);
 
-    private Map<String, String> clientMap = new ConcurrentHashMap<>();
+    private SentenceParseService parseService = SpringUtils.getBean(SentenceParseService.class);
+
+    private SentenceGroupService groupService = SpringUtils.getBean(SentenceGroupService.class);
+
+    /**
+     * Map<sessionId, Player>
+     **/
+    private Map<String, Player> clientMap = new ConcurrentHashMap<>();
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         String userName = (String) session.getAttributes().get("userName");
-        clientMap.put(session.getId(), userName);
+        clientMap.put(session.getId(), new Player(userName,session));
         super.afterConnectionEstablished(session);
     }
 
@@ -37,14 +48,16 @@ public class ChatHandler extends TextWebSocketHandler {
         String messageContent = new String(bytes);
         JSONObject jsonObject = JSONObject.parseObject(messageContent);
         //获取发送者名字
-        String name = clientMap.get(session.getId());
+        String name = clientMap.get(session.getId()).getName();
         //发送过来的消息
         String content = (String) jsonObject.get("content");
         //处理消息
-        String resultMsg = chatService.handleMessage(content, name);
+        chatRecordService.recordMessage(content, name);
+        SentenceParse sentenceParse = parseService.parseSentence(content);
+        String resultContent = groupService.groupSentence(sentenceParse);
         if (session != null && session.isOpen()) {
             //发送消息
-            session.sendMessage(new TextMessage(resultMsg));
+            session.sendMessage(new TextMessage(resultContent));
         }
     }
 

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kirisame.gensokyo.daze.blue.luka.mapper.SentenceParseBaseMapper">
+  <resultMap id="BaseResultMap" type="com.kirisame.gensokyo.daze.blue.luka.entity.po.SentenceParseBase">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="word_content" jdbcType="VARCHAR" property="wordContent" />
+    <result column="word_type" jdbcType="INTEGER" property="wordType" />
+    <result column="word_describe" jdbcType="VARCHAR" property="wordDescribe" />
+    <result column="enter_date" jdbcType="TIMESTAMP" property="enterDate" />
+    <result column="parse_function" jdbcType="VARCHAR" property="parseFunction" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, word_content, word_type, word_describe, enter_date, parse_function
+  </sql>
+  <select id="selectByExample" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.SentenceParseBaseExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sentence_parse_base
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sentence_parse_base
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sentence_parse_base
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.SentenceParseBaseExample">
+    delete from sentence_parse_base
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.SentenceParseBase">
+    insert into sentence_parse_base (id, word_content, word_type, 
+      word_describe, enter_date, parse_function
+      )
+    values (#{id,jdbcType=VARCHAR}, #{wordContent,jdbcType=VARCHAR}, #{wordType,jdbcType=INTEGER}, 
+      #{wordDescribe,jdbcType=VARCHAR}, #{enterDate,jdbcType=TIMESTAMP}, #{parseFunction,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.SentenceParseBase">
+    insert into sentence_parse_base
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="wordContent != null">
+        word_content,
+      </if>
+      <if test="wordType != null">
+        word_type,
+      </if>
+      <if test="wordDescribe != null">
+        word_describe,
+      </if>
+      <if test="enterDate != null">
+        enter_date,
+      </if>
+      <if test="parseFunction != null">
+        parse_function,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="wordContent != null">
+        #{wordContent,jdbcType=VARCHAR},
+      </if>
+      <if test="wordType != null">
+        #{wordType,jdbcType=INTEGER},
+      </if>
+      <if test="wordDescribe != null">
+        #{wordDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="enterDate != null">
+        #{enterDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="parseFunction != null">
+        #{parseFunction,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.SentenceParseBaseExample" resultType="java.lang.Long">
+    select count(*) from sentence_parse_base
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sentence_parse_base
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wordContent != null">
+        word_content = #{record.wordContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wordType != null">
+        word_type = #{record.wordType,jdbcType=INTEGER},
+      </if>
+      <if test="record.wordDescribe != null">
+        word_describe = #{record.wordDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.enterDate != null">
+        enter_date = #{record.enterDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.parseFunction != null">
+        parse_function = #{record.parseFunction,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sentence_parse_base
+    set id = #{record.id,jdbcType=VARCHAR},
+      word_content = #{record.wordContent,jdbcType=VARCHAR},
+      word_type = #{record.wordType,jdbcType=INTEGER},
+      word_describe = #{record.wordDescribe,jdbcType=VARCHAR},
+      enter_date = #{record.enterDate,jdbcType=TIMESTAMP},
+      parse_function = #{record.parseFunction,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.SentenceParseBase">
+    update sentence_parse_base
+    <set>
+      <if test="wordContent != null">
+        word_content = #{wordContent,jdbcType=VARCHAR},
+      </if>
+      <if test="wordType != null">
+        word_type = #{wordType,jdbcType=INTEGER},
+      </if>
+      <if test="wordDescribe != null">
+        word_describe = #{wordDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="enterDate != null">
+        enter_date = #{enterDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="parseFunction != null">
+        parse_function = #{parseFunction,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.SentenceParseBase">
+    update sentence_parse_base
+    set word_content = #{wordContent,jdbcType=VARCHAR},
+      word_type = #{wordType,jdbcType=INTEGER},
+      word_describe = #{wordDescribe,jdbcType=VARCHAR},
+      enter_date = #{enterDate,jdbcType=TIMESTAMP},
+      parse_function = #{parseFunction,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="queryInclude" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sentence_parse_base
+    where locate(word_content,#{sentence,jdbcType=VARCHAR})
+  </select>
+</mapper>

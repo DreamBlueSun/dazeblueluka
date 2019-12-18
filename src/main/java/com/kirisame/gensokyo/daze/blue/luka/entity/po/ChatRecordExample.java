@@ -1,4 +1,4 @@
-package com.kirisame.gensokyo.daze.blue.luka.entity;
+package com.kirisame.gensokyo.daze.blue.luka.entity.po;
 
 import java.util.ArrayList;
 import java.util.Date;

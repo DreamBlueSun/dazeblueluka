@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.kirisame.gensokyo.daze.blue.luka.mapper.ChatRecordMapper">
-  <resultMap id="BaseResultMap" type="com.kirisame.gensokyo.daze.blue.luka.entity.po.ChatRecord">
+<mapper namespace="com.kirisame.gensokyo.daze.blue.luka.mapper.SentenceFormatBaseMapper">
+  <resultMap id="BaseResultMap" type="com.kirisame.gensokyo.daze.blue.luka.entity.po.SentenceFormatBase">
     <id column="id" jdbcType="VARCHAR" property="id" />
-    <result column="message" jdbcType="VARCHAR" property="message" />
-    <result column="date_time" jdbcType="TIMESTAMP" property="dateTime" />
-    <result column="point_to" jdbcType="INTEGER" property="pointTo" />
-    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="source_word" jdbcType="VARCHAR" property="sourceWord" />
+    <result column="result_word" jdbcType="VARCHAR" property="resultWord" />
+    <result column="enter_date" jdbcType="TIMESTAMP" property="enterDate" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,15 +66,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, message, date_time, point_to, `type`
+    id, source_word, result_word, enter_date
   </sql>
-  <select id="selectByExample" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.ChatRecordExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.SentenceFormatBaseExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from chat_record
+    from sentence_format_base
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -92,87 +91,78 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
-    from chat_record
+    from sentence_format_base
     where id = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from chat_record
+    delete from sentence_format_base
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.ChatRecordExample">
-    delete from chat_record
+  <delete id="deleteByExample" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.SentenceFormatBaseExample">
+    delete from sentence_format_base
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.ChatRecord">
-    insert into chat_record (id, message, date_time, 
-      point_to, `type`)
-    values (#{id,jdbcType=VARCHAR}, #{message,jdbcType=VARCHAR}, #{dateTime,jdbcType=TIMESTAMP}, 
-      #{pointTo,jdbcType=INTEGER}, #{type,jdbcType=INTEGER})
+  <insert id="insert" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.SentenceFormatBase">
+    insert into sentence_format_base (id, source_word, result_word, 
+      enter_date)
+    values (#{id,jdbcType=VARCHAR}, #{sourceWord,jdbcType=VARCHAR}, #{resultWord,jdbcType=VARCHAR}, 
+      #{enterDate,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.ChatRecord">
-    insert into chat_record
+  <insert id="insertSelective" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.SentenceFormatBase">
+    insert into sentence_format_base
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
-      <if test="message != null">
-        message,
+      <if test="sourceWord != null">
+        source_word,
       </if>
-      <if test="dateTime != null">
-        date_time,
+      <if test="resultWord != null">
+        result_word,
       </if>
-      <if test="pointTo != null">
-        point_to,
-      </if>
-      <if test="type != null">
-        `type`,
+      <if test="enterDate != null">
+        enter_date,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=VARCHAR},
       </if>
-      <if test="message != null">
-        #{message,jdbcType=VARCHAR},
+      <if test="sourceWord != null">
+        #{sourceWord,jdbcType=VARCHAR},
       </if>
-      <if test="dateTime != null">
-        #{dateTime,jdbcType=TIMESTAMP},
+      <if test="resultWord != null">
+        #{resultWord,jdbcType=VARCHAR},
       </if>
-      <if test="pointTo != null">
-        #{pointTo,jdbcType=INTEGER},
-      </if>
-      <if test="type != null">
-        #{type,jdbcType=INTEGER},
+      <if test="enterDate != null">
+        #{enterDate,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.ChatRecordExample" resultType="java.lang.Long">
-    select count(*) from chat_record
+  <select id="countByExample" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.SentenceFormatBaseExample" resultType="java.lang.Long">
+    select count(*) from sentence_format_base
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update chat_record
+    update sentence_format_base
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=VARCHAR},
       </if>
-      <if test="record.message != null">
-        message = #{record.message,jdbcType=VARCHAR},
+      <if test="record.sourceWord != null">
+        source_word = #{record.sourceWord,jdbcType=VARCHAR},
       </if>
-      <if test="record.dateTime != null">
-        date_time = #{record.dateTime,jdbcType=TIMESTAMP},
+      <if test="record.resultWord != null">
+        result_word = #{record.resultWord,jdbcType=VARCHAR},
       </if>
-      <if test="record.pointTo != null">
-        point_to = #{record.pointTo,jdbcType=INTEGER},
-      </if>
-      <if test="record.type != null">
-        `type` = #{record.type,jdbcType=INTEGER},
+      <if test="record.enterDate != null">
+        enter_date = #{record.enterDate,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null">
@@ -180,40 +170,41 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update chat_record
+    update sentence_format_base
     set id = #{record.id,jdbcType=VARCHAR},
-      message = #{record.message,jdbcType=VARCHAR},
-      date_time = #{record.dateTime,jdbcType=TIMESTAMP},
-      point_to = #{record.pointTo,jdbcType=INTEGER},
-      `type` = #{record.type,jdbcType=INTEGER}
+      source_word = #{record.sourceWord,jdbcType=VARCHAR},
+      result_word = #{record.resultWord,jdbcType=VARCHAR},
+      enter_date = #{record.enterDate,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.ChatRecord">
-    update chat_record
+  <update id="updateByPrimaryKeySelective" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.SentenceFormatBase">
+    update sentence_format_base
     <set>
-      <if test="message != null">
-        message = #{message,jdbcType=VARCHAR},
+      <if test="sourceWord != null">
+        source_word = #{sourceWord,jdbcType=VARCHAR},
       </if>
-      <if test="dateTime != null">
-        date_time = #{dateTime,jdbcType=TIMESTAMP},
+      <if test="resultWord != null">
+        result_word = #{resultWord,jdbcType=VARCHAR},
       </if>
-      <if test="pointTo != null">
-        point_to = #{pointTo,jdbcType=INTEGER},
-      </if>
-      <if test="type != null">
-        `type` = #{type,jdbcType=INTEGER},
+      <if test="enterDate != null">
+        enter_date = #{enterDate,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.ChatRecord">
-    update chat_record
-    set message = #{message,jdbcType=VARCHAR},
-      date_time = #{dateTime,jdbcType=TIMESTAMP},
-      point_to = #{pointTo,jdbcType=INTEGER},
-      `type` = #{type,jdbcType=INTEGER}
+  <update id="updateByPrimaryKey" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.SentenceFormatBase">
+    update sentence_format_base
+    set source_word = #{sourceWord,jdbcType=VARCHAR},
+      result_word = #{resultWord,jdbcType=VARCHAR},
+      enter_date = #{enterDate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+  <select id="queryInclude" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sentence_format_base
+    where locate(source_word,#{sentence,jdbcType=VARCHAR})
+  </select>
 </mapper>

@@ -6,7 +6,7 @@ package com.kirisame.gensokyo.daze.blue.luka.service;
  * @date: 2019/12/9 17:57
  */
 
-public interface LuKaChatService {
+public interface ChatRecordService {
 
     /**
      * @param msg      消息
@@ -16,6 +16,6 @@ public interface LuKaChatService {
      * @description 消息处理方法
      * @date 2019/12/9 18:02
      **/
-    String handleMessage(String msg, String userName);
+    void recordMessage(String msg, String userName);
 
 }

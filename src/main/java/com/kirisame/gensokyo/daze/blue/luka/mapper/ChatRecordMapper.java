@@ -1,7 +1,7 @@
 package com.kirisame.gensokyo.daze.blue.luka.mapper;
 
-import com.kirisame.gensokyo.daze.blue.luka.entity.ChatRecord;
-import com.kirisame.gensokyo.daze.blue.luka.entity.ChatRecordExample;
+import com.kirisame.gensokyo.daze.blue.luka.entity.po.ChatRecord;
+import com.kirisame.gensokyo.daze.blue.luka.entity.po.ChatRecordExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
