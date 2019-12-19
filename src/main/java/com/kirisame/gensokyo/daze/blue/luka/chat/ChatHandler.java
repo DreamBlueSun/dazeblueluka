@@ -12,6 +12,7 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -30,14 +31,20 @@ public class ChatHandler extends TextWebSocketHandler {
     private SentenceGroupService groupService = SpringUtils.getBean(SentenceGroupService.class);
 
     /**
-     * Map<sessionId, Player>
+     * Map<sessionId, player>
      **/
-    private Map<String, Player> clientMap = new ConcurrentHashMap<>();
+    private Map<String, Player> playerMap = new ConcurrentHashMap<>();
+
+    /**
+     * Map<playerId, session>
+     **/
+    private static Map<String, WebSocketSession> sessionMap = new ConcurrentHashMap<>();
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         String userName = (String) session.getAttributes().get("userName");
-        clientMap.put(session.getId(), new Player(userName,session));
+        playerMap.put(session.getId(), new Player(userName, session));
+        sessionMap.put(userName, session);
         super.afterConnectionEstablished(session);
     }
 
@@ -48,13 +55,13 @@ public class ChatHandler extends TextWebSocketHandler {
         String messageContent = new String(bytes);
         JSONObject jsonObject = JSONObject.parseObject(messageContent);
         //获取发送者名字
-        String name = clientMap.get(session.getId()).getName();
+        String name = playerMap.get(session.getId()).getName();
         //发送过来的消息
         String content = (String) jsonObject.get("content");
         //处理消息
         chatRecordService.recordMessage(content, name);
         SentenceParse sentenceParse = parseService.parseSentence(content);
-        String resultContent = groupService.groupSentence(sentenceParse);
+        String resultContent = groupService.groupSentence(name, sentenceParse);
         if (session != null && session.isOpen()) {
             //发送消息
             session.sendMessage(new TextMessage(resultContent));
@@ -65,4 +72,16 @@ public class ChatHandler extends TextWebSocketHandler {
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
         super.afterConnectionClosed(session, status);
     }
+
+    public static void sendMessage(String playerId, String message) {
+        WebSocketSession session = sessionMap.get(playerId);
+        if (session != null && session.isOpen()) {
+            try {
+                session.sendMessage(new TextMessage(message));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }

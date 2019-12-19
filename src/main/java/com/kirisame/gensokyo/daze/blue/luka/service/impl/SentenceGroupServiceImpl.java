@@ -1,7 +1,11 @@
 package com.kirisame.gensokyo.daze.blue.luka.service.impl;
 
 import com.kirisame.gensokyo.daze.blue.luka.entity.bo.SentenceParse;
+import com.kirisame.gensokyo.daze.blue.luka.mapper.LukaInfoMapper;
 import com.kirisame.gensokyo.daze.blue.luka.service.SentenceGroupService;
+import com.kirisame.gensokyo.daze.blue.luka.util.SentenceParseUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
@@ -11,29 +15,42 @@ import java.util.List;
  * @auther: MaoHangBin
  * @date: 2019/12/18 17:59
  */
-
+@Service
 public class SentenceGroupServiceImpl implements SentenceGroupService {
+
+    @Autowired
+    private LukaInfoMapper infoMapper;
+
     @Override
-    public String groupSentence(SentenceParse sentenceParse) {
+    public String groupSentence(String name, SentenceParse sentenceParse) {
         List<String> notParseWordList = sentenceParse.getNotParseWordList();
         if (notParseWordList != null) {
-            StringBuffer stringBuffer = new StringBuffer("目前还不懂得这些词语：");
-            for (int i = 0; i < notParseWordList.size(); i++) {
-                stringBuffer.append(notParseWordList.get(i));
-                if (i < notParseWordList.size() - 1) {
-                    stringBuffer.append("、");
-                } else {
-                    stringBuffer.append("。");
-                }
-            }
-            return stringBuffer.toString();
+            return disposeNotParseWordList(notParseWordList);
         }
-        String targetFirst = sentenceParse.getTargetFirst();
-        String targetSecond = sentenceParse.getTargetSecond();
-        String executeType = sentenceParse.getExecuteType();
-        String executeContent = sentenceParse.getExecuteContent();
-        String executeParameter = sentenceParse.getExecuteParameter();
+        //TODO 执行时间
         Date executeDateTime = sentenceParse.getExecuteDateTime();
-        return "";
+        //TODO 执行目标
+        String target = sentenceParse.getExecuteTarget();
+        //解析、返回
+        String executeType = sentenceParse.getExecuteClass();
+        String executeContent = sentenceParse.getExecuteMethod();
+        String executeParameter = sentenceParse.getExecuteParameter();
+        String executeResult = new SentenceParseUtils<String>().parseFunction(null, executeType, executeContent, executeParameter);
+        return executeResult;
     }
+
+    private String disposeNotParseWordList(List<String> notParseWordList) {
+        StringBuffer stringBuffer = new StringBuffer("：");
+        for (int i = 0; i < notParseWordList.size(); i++) {
+            stringBuffer.append(notParseWordList.get(i));
+            if (i < notParseWordList.size() - 1) {
+                stringBuffer.append("、");
+            } else {
+                stringBuffer.append("。");
+            }
+        }
+        return stringBuffer.toString();
+    }
+
+
 }

@@ -17,24 +17,19 @@ public class SentenceParse {
     private List<String> notParseWordList;
 
     /**
-     * 主对象
+     * 消息对象
      **/
-    private String targetFirst;
-
-    /**
-     * 副对象
-     **/
-    private String targetSecond;
+    private String executeTarget;
 
     /**
      * 执行类型
      **/
-    private String executeType;
+    private String executeClass;
 
     /**
      * 执行内容
      **/
-    private String executeContent;
+    private String executeMethod;
 
     /**
      * 执行参数
@@ -54,36 +49,28 @@ public class SentenceParse {
         this.notParseWordList = notParseWordList;
     }
 
-    public String getTargetFirst() {
-        return targetFirst;
+    public String getExecuteTarget() {
+        return executeTarget;
     }
 
-    public void setTargetFirst(String targetFirst) {
-        this.targetFirst = targetFirst;
+    public void setExecuteTarget(String executeTarget) {
+        this.executeTarget = executeTarget;
     }
 
-    public String getTargetSecond() {
-        return targetSecond;
+    public String getExecuteClass() {
+        return executeClass;
     }
 
-    public void setTargetSecond(String targetSecond) {
-        this.targetSecond = targetSecond;
+    public void setExecuteClass(String executeClass) {
+        this.executeClass = executeClass;
     }
 
-    public String getExecuteType() {
-        return executeType;
+    public String getExecuteMethod() {
+        return executeMethod;
     }
 
-    public void setExecuteType(String executeType) {
-        this.executeType = executeType;
-    }
-
-    public String getExecuteContent() {
-        return executeContent;
-    }
-
-    public void setExecuteContent(String executeContent) {
-        this.executeContent = executeContent;
+    public void setExecuteMethod(String executeMethod) {
+        this.executeMethod = executeMethod;
     }
 
     public String getExecuteParameter() {

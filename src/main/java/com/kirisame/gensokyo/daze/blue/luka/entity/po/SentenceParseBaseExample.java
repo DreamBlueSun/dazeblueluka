@@ -455,73 +455,73 @@ public class SentenceParseBaseExample {
             return (Criteria) this;
         }
 
-        public Criteria andParseFunctionIsNull() {
-            addCriterion("parse_function is null");
+        public Criteria andWordParseIsNull() {
+            addCriterion("word_parse is null");
             return (Criteria) this;
         }
 
-        public Criteria andParseFunctionIsNotNull() {
-            addCriterion("parse_function is not null");
+        public Criteria andWordParseIsNotNull() {
+            addCriterion("word_parse is not null");
             return (Criteria) this;
         }
 
-        public Criteria andParseFunctionEqualTo(String value) {
-            addCriterion("parse_function =", value, "parseFunction");
+        public Criteria andWordParseEqualTo(String value) {
+            addCriterion("word_parse =", value, "wordParse");
             return (Criteria) this;
         }
 
-        public Criteria andParseFunctionNotEqualTo(String value) {
-            addCriterion("parse_function <>", value, "parseFunction");
+        public Criteria andWordParseNotEqualTo(String value) {
+            addCriterion("word_parse <>", value, "wordParse");
             return (Criteria) this;
         }
 
-        public Criteria andParseFunctionGreaterThan(String value) {
-            addCriterion("parse_function >", value, "parseFunction");
+        public Criteria andWordParseGreaterThan(String value) {
+            addCriterion("word_parse >", value, "wordParse");
             return (Criteria) this;
         }
 
-        public Criteria andParseFunctionGreaterThanOrEqualTo(String value) {
-            addCriterion("parse_function >=", value, "parseFunction");
+        public Criteria andWordParseGreaterThanOrEqualTo(String value) {
+            addCriterion("word_parse >=", value, "wordParse");
             return (Criteria) this;
         }
 
-        public Criteria andParseFunctionLessThan(String value) {
-            addCriterion("parse_function <", value, "parseFunction");
+        public Criteria andWordParseLessThan(String value) {
+            addCriterion("word_parse <", value, "wordParse");
             return (Criteria) this;
         }
 
-        public Criteria andParseFunctionLessThanOrEqualTo(String value) {
-            addCriterion("parse_function <=", value, "parseFunction");
+        public Criteria andWordParseLessThanOrEqualTo(String value) {
+            addCriterion("word_parse <=", value, "wordParse");
             return (Criteria) this;
         }
 
-        public Criteria andParseFunctionLike(String value) {
-            addCriterion("parse_function like", value, "parseFunction");
+        public Criteria andWordParseLike(String value) {
+            addCriterion("word_parse like", value, "wordParse");
             return (Criteria) this;
         }
 
-        public Criteria andParseFunctionNotLike(String value) {
-            addCriterion("parse_function not like", value, "parseFunction");
+        public Criteria andWordParseNotLike(String value) {
+            addCriterion("word_parse not like", value, "wordParse");
             return (Criteria) this;
         }
 
-        public Criteria andParseFunctionIn(List<String> values) {
-            addCriterion("parse_function in", values, "parseFunction");
+        public Criteria andWordParseIn(List<String> values) {
+            addCriterion("word_parse in", values, "wordParse");
             return (Criteria) this;
         }
 
-        public Criteria andParseFunctionNotIn(List<String> values) {
-            addCriterion("parse_function not in", values, "parseFunction");
+        public Criteria andWordParseNotIn(List<String> values) {
+            addCriterion("word_parse not in", values, "wordParse");
             return (Criteria) this;
         }
 
-        public Criteria andParseFunctionBetween(String value1, String value2) {
-            addCriterion("parse_function between", value1, value2, "parseFunction");
+        public Criteria andWordParseBetween(String value1, String value2) {
+            addCriterion("word_parse between", value1, value2, "wordParse");
             return (Criteria) this;
         }
 
-        public Criteria andParseFunctionNotBetween(String value1, String value2) {
-            addCriterion("parse_function not between", value1, value2, "parseFunction");
+        public Criteria andWordParseNotBetween(String value1, String value2) {
+            addCriterion("word_parse not between", value1, value2, "wordParse");
             return (Criteria) this;
         }
     }

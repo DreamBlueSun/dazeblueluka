@@ -7,10 +7,10 @@ import com.kirisame.gensokyo.daze.blue.luka.mapper.SentenceFormatBaseMapper;
 import com.kirisame.gensokyo.daze.blue.luka.mapper.SentenceParseBaseMapper;
 import com.kirisame.gensokyo.daze.blue.luka.service.SentenceParseService;
 import com.kirisame.gensokyo.daze.blue.luka.util.SentenceDateUtils;
+import com.kirisame.gensokyo.daze.blue.luka.util.SentenceParseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Date;
@@ -58,28 +58,20 @@ public class SentenceParseServiceImpl implements SentenceParseService {
                     Integer type = parse.getWordType();
                     switch (type) {
                         case 0:
-                            if (sentenceParse.getTargetFirst() == null) {
-                                sentenceParse.setTargetFirst(content);
-                            } else {
-                                sentenceParse.setTargetSecond(content);
-                            }
+                            sentenceParse.setExecuteTarget(parse.getWordParse());
                             break;
                         case 1:
-                            sentenceParse.setExecuteContent(parse.getParseFunction());
+                            sentenceParse.setExecuteMethod(parse.getWordParse());
                             break;
                         case 2:
-                            Date date = null;
-                            try {
-                                Class<SentenceDateUtils> clazz = SentenceDateUtils.class;
-                                Method method = clazz.getMethod(parse.getParseFunction());
-                                date = (Date) method.invoke(null);
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
+                            sentenceParse.setExecuteParameter(parse.getWordParse());
+                            break;
+                        case 3:
+                            Date date = new SentenceParseUtils<Date>().parseFunction(null, SentenceDateUtils.class, parse.getWordParse());
                             sentenceParse.setExecuteDateTime(date);
                             break;
                         default:
-                            sentenceParse.setExecuteType(parse.getParseFunction());
+                            sentenceParse.setExecuteClass(parse.getWordParse());
                             break;
                     }
                     sentence = sentence.replace(content, ",");

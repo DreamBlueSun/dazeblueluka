@@ -7,7 +7,7 @@
     <result column="word_type" jdbcType="INTEGER" property="wordType" />
     <result column="word_describe" jdbcType="VARCHAR" property="wordDescribe" />
     <result column="enter_date" jdbcType="TIMESTAMP" property="enterDate" />
-    <result column="parse_function" jdbcType="VARCHAR" property="parseFunction" />
+    <result column="word_parse" jdbcType="VARCHAR" property="wordParse" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, word_content, word_type, word_describe, enter_date, parse_function
+    id, word_content, word_type, word_describe, enter_date, word_parse
   </sql>
   <select id="selectByExample" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.SentenceParseBaseExample" resultMap="BaseResultMap">
     select
@@ -110,10 +110,10 @@
   </delete>
   <insert id="insert" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.SentenceParseBase">
     insert into sentence_parse_base (id, word_content, word_type, 
-      word_describe, enter_date, parse_function
+      word_describe, enter_date, word_parse
       )
     values (#{id,jdbcType=VARCHAR}, #{wordContent,jdbcType=VARCHAR}, #{wordType,jdbcType=INTEGER}, 
-      #{wordDescribe,jdbcType=VARCHAR}, #{enterDate,jdbcType=TIMESTAMP}, #{parseFunction,jdbcType=VARCHAR}
+      #{wordDescribe,jdbcType=VARCHAR}, #{enterDate,jdbcType=TIMESTAMP}, #{wordParse,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.SentenceParseBase">
@@ -134,8 +134,8 @@
       <if test="enterDate != null">
         enter_date,
       </if>
-      <if test="parseFunction != null">
-        parse_function,
+      <if test="wordParse != null">
+        word_parse,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -154,8 +154,8 @@
       <if test="enterDate != null">
         #{enterDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="parseFunction != null">
-        #{parseFunction,jdbcType=VARCHAR},
+      <if test="wordParse != null">
+        #{wordParse,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -183,8 +183,8 @@
       <if test="record.enterDate != null">
         enter_date = #{record.enterDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.parseFunction != null">
-        parse_function = #{record.parseFunction,jdbcType=VARCHAR},
+      <if test="record.wordParse != null">
+        word_parse = #{record.wordParse,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -198,7 +198,7 @@
       word_type = #{record.wordType,jdbcType=INTEGER},
       word_describe = #{record.wordDescribe,jdbcType=VARCHAR},
       enter_date = #{record.enterDate,jdbcType=TIMESTAMP},
-      parse_function = #{record.parseFunction,jdbcType=VARCHAR}
+      word_parse = #{record.wordParse,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -218,8 +218,8 @@
       <if test="enterDate != null">
         enter_date = #{enterDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="parseFunction != null">
-        parse_function = #{parseFunction,jdbcType=VARCHAR},
+      <if test="wordParse != null">
+        word_parse = #{wordParse,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
@@ -230,7 +230,7 @@
       word_type = #{wordType,jdbcType=INTEGER},
       word_describe = #{wordDescribe,jdbcType=VARCHAR},
       enter_date = #{enterDate,jdbcType=TIMESTAMP},
-      parse_function = #{parseFunction,jdbcType=VARCHAR}
+      word_parse = #{wordParse,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <select id="queryInclude" parameterType="java.lang.String" resultMap="BaseResultMap">
