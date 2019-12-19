@@ -7,6 +7,7 @@ import com.kirisame.gensokyo.daze.blue.luka.service.ChatRecordService;
 import com.kirisame.gensokyo.daze.blue.luka.service.SentenceGroupService;
 import com.kirisame.gensokyo.daze.blue.luka.service.SentenceParseService;
 import com.kirisame.gensokyo.daze.blue.luka.util.SpringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -63,8 +64,10 @@ public class ChatHandler extends TextWebSocketHandler {
         SentenceParse sentenceParse = parseService.parseSentence(content);
         String resultContent = groupService.groupSentence(name, sentenceParse);
         if (session != null && session.isOpen()) {
-            //发送消息
-            session.sendMessage(new TextMessage(resultContent));
+            if (StringUtils.isNotBlank(resultContent)) {
+                //发送消息
+                session.sendMessage(new TextMessage(resultContent));
+            }
         }
     }
 

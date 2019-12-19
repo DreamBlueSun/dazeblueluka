@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ChatRecordExample {
+public class LukaChatRecordExample {
     protected String orderByClause;
 
     protected boolean distinct;
@@ -15,7 +15,7 @@ public class ChatRecordExample {
 
     private Long offset;
 
-    public ChatRecordExample() {
+    public LukaChatRecordExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 

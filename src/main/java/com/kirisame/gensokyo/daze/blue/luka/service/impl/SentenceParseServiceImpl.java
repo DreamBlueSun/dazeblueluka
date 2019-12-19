@@ -8,6 +8,7 @@ import com.kirisame.gensokyo.daze.blue.luka.mapper.SentenceParseBaseMapper;
 import com.kirisame.gensokyo.daze.blue.luka.service.SentenceParseService;
 import com.kirisame.gensokyo.daze.blue.luka.util.SentenceDateUtils;
 import com.kirisame.gensokyo.daze.blue.luka.util.SentenceParseUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -83,6 +84,9 @@ public class SentenceParseServiceImpl implements SentenceParseService {
                 sentence = sentence.replace(nullField, ",");
             }
             if (sentence.length() > 1) {
+                if (StringUtils.endsWith(sentence,",")) {
+                    sentence = sentence.substring(0, sentence.length() - 1);
+                }
                 List<String> notParseWordList = Arrays.asList(sentence.split(","));
                 sentenceParse.setNotParseWordList(notParseWordList);
             }

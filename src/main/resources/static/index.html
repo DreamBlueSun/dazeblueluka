@@ -14,8 +14,9 @@
             var userName = document.getElementById("userName").value;
             //判断浏览器是否支持websocket
             if ('WebSocket' in window) {
-                var url = "ws://" + document.location.host + pathHead + "webSocket/" + roomName + "/" + userName;
-                web_socket = new WebSocket(url);
+                var url = "ws://" + document.location.host + pathHead + "luKaChat/" + "/" + userName;
+                console.log(url);
+                websocket = new WebSocket(url);
                 websocket.onopen = function () {
                     setMessage("连接成功")
                 }
@@ -49,12 +50,10 @@
 
         //发送消息
         function sendmessage() {
-            //接收者
-            var to = document.getElementById("to").value;
             //获取要发送的内容
             var msg = document.getElementById("content").value;
             if (websocket != null) {
-                var message = '{"to":"' + to + '","content":"' + msg + '"}';
+                var message = '{"content":"' + msg + '"}';
                 websocket.send(message)
             }
 
@@ -75,8 +74,6 @@
 用户名: <input id="userName">
 <button onclick="abc()">连接</button>
 <br>
-接收者:<input id="to"><br>
-
 内容:<input id="content">
 <button onclick="sendmessage()">发送</button>
 <br>

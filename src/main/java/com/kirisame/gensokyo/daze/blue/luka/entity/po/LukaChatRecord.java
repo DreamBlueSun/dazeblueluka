@@ -4,11 +4,11 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * chat_record
+ * luka_chat_record
  *
  * @author
  */
-public class ChatRecord implements Serializable {
+public class LukaChatRecord implements Serializable {
     /**
      * 唯一主键
      */
@@ -36,10 +36,10 @@ public class ChatRecord implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public ChatRecord() {
+    public LukaChatRecord() {
     }
 
-    public ChatRecord(String id, String message, Date dateTime, Integer pointTo, Integer type) {
+    public LukaChatRecord(String id, String message, Date dateTime, Integer pointTo, Integer type) {
         this.id = id;
         this.message = message;
         this.dateTime = dateTime;
@@ -98,7 +98,7 @@ public class ChatRecord implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        ChatRecord other = (ChatRecord) that;
+        LukaChatRecord other = (LukaChatRecord) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
                 && (this.getMessage() == null ? other.getMessage() == null : this.getMessage().equals(other.getMessage()))
                 && (this.getDateTime() == null ? other.getDateTime() == null : this.getDateTime().equals(other.getDateTime()))

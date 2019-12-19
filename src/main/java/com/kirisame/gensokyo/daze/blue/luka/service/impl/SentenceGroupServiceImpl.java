@@ -1,10 +1,8 @@
 package com.kirisame.gensokyo.daze.blue.luka.service.impl;
 
 import com.kirisame.gensokyo.daze.blue.luka.entity.bo.SentenceParse;
-import com.kirisame.gensokyo.daze.blue.luka.mapper.LukaInfoMapper;
 import com.kirisame.gensokyo.daze.blue.luka.service.SentenceGroupService;
 import com.kirisame.gensokyo.daze.blue.luka.util.SentenceParseUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -17,9 +15,6 @@ import java.util.List;
  */
 @Service
 public class SentenceGroupServiceImpl implements SentenceGroupService {
-
-    @Autowired
-    private LukaInfoMapper infoMapper;
 
     @Override
     public String groupSentence(String name, SentenceParse sentenceParse) {
@@ -35,7 +30,7 @@ public class SentenceGroupServiceImpl implements SentenceGroupService {
         String executeType = sentenceParse.getExecuteClass();
         String executeContent = sentenceParse.getExecuteMethod();
         String executeParameter = sentenceParse.getExecuteParameter();
-        String executeResult = new SentenceParseUtils<String>().parseFunction(null, executeType, executeContent, executeParameter);
+        String executeResult = new SentenceParseUtils<String>().parseFunction(null, executeType, executeContent, target);
         return executeResult;
     }
 

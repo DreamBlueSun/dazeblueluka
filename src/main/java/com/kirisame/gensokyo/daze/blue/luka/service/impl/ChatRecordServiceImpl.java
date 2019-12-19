@@ -1,7 +1,7 @@
 package com.kirisame.gensokyo.daze.blue.luka.service.impl;
 
-import com.kirisame.gensokyo.daze.blue.luka.entity.po.ChatRecord;
-import com.kirisame.gensokyo.daze.blue.luka.mapper.ChatRecordMapper;
+import com.kirisame.gensokyo.daze.blue.luka.entity.po.LukaChatRecord;
+import com.kirisame.gensokyo.daze.blue.luka.mapper.LukaChatRecordMapper;
 import com.kirisame.gensokyo.daze.blue.luka.service.ChatRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,15 +19,16 @@ import java.util.UUID;
 public class ChatRecordServiceImpl implements ChatRecordService {
 
     @Autowired
-    private ChatRecordMapper chatRecordMapper;
+    private LukaChatRecordMapper chatRecordMapper;
 
     @Override
     public void recordMessage(String msg, String userName) {
         try {
-            String id = UUID.randomUUID().toString().trim();
-            ChatRecord receiveRecord = new ChatRecord(id, msg, new Date(), 6810, 0);
+            String receiveId = UUID.randomUUID().toString().replace("-", "").trim();
+            LukaChatRecord receiveRecord = new LukaChatRecord(receiveId, msg, new Date(), 6810, 0);
             chatRecordMapper.insert(receiveRecord);
-            ChatRecord replyRecord = new ChatRecord(id, msg, new Date(), 6810, 1);
+            String replyId = UUID.randomUUID().toString().replace("-", "").trim();
+            LukaChatRecord replyRecord = new LukaChatRecord(replyId, msg, new Date(), 6810, 1);
             chatRecordMapper.insert(replyRecord);
         } catch (Exception e) {
             e.printStackTrace();

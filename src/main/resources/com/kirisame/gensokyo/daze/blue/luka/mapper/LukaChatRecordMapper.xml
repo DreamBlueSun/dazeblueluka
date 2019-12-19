@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.kirisame.gensokyo.daze.blue.luka.mapper.ChatRecordMapper">
-  <resultMap id="BaseResultMap" type="com.kirisame.gensokyo.daze.blue.luka.entity.po.ChatRecord">
+<mapper namespace="com.kirisame.gensokyo.daze.blue.luka.mapper.LukaChatRecordMapper">
+  <resultMap id="BaseResultMap" type="com.kirisame.gensokyo.daze.blue.luka.entity.po.LukaChatRecord">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="message" jdbcType="VARCHAR" property="message" />
     <result column="date_time" jdbcType="TIMESTAMP" property="dateTime" />
@@ -69,13 +69,13 @@
   <sql id="Base_Column_List">
     id, message, date_time, point_to, `type`
   </sql>
-  <select id="selectByExample" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.ChatRecordExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.LukaChatRecordExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from chat_record
+    from luka_chat_record
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -94,27 +94,27 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from chat_record
+    from luka_chat_record
     where id = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from chat_record
+    delete from luka_chat_record
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.ChatRecordExample">
-    delete from chat_record
+  <delete id="deleteByExample" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.LukaChatRecordExample">
+    delete from luka_chat_record
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.ChatRecord">
-    insert into chat_record (id, message, date_time, 
+  <insert id="insert" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.LukaChatRecord">
+    insert into luka_chat_record (id, message, date_time, 
       point_to, `type`)
     values (#{id,jdbcType=VARCHAR}, #{message,jdbcType=VARCHAR}, #{dateTime,jdbcType=TIMESTAMP}, 
       #{pointTo,jdbcType=INTEGER}, #{type,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.ChatRecord">
-    insert into chat_record
+  <insert id="insertSelective" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.LukaChatRecord">
+    insert into luka_chat_record
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
@@ -150,14 +150,14 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.ChatRecordExample" resultType="java.lang.Long">
-    select count(*) from chat_record
+  <select id="countByExample" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.LukaChatRecordExample" resultType="java.lang.Long">
+    select count(*) from luka_chat_record
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update chat_record
+    update luka_chat_record
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=VARCHAR},
@@ -180,7 +180,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update chat_record
+    update luka_chat_record
     set id = #{record.id,jdbcType=VARCHAR},
       message = #{record.message,jdbcType=VARCHAR},
       date_time = #{record.dateTime,jdbcType=TIMESTAMP},
@@ -190,8 +190,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.ChatRecord">
-    update chat_record
+  <update id="updateByPrimaryKeySelective" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.LukaChatRecord">
+    update luka_chat_record
     <set>
       <if test="message != null">
         message = #{message,jdbcType=VARCHAR},
@@ -208,8 +208,8 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.ChatRecord">
-    update chat_record
+  <update id="updateByPrimaryKey" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.LukaChatRecord">
+    update luka_chat_record
     set message = #{message,jdbcType=VARCHAR},
       date_time = #{dateTime,jdbcType=TIMESTAMP},
       point_to = #{pointTo,jdbcType=INTEGER},
