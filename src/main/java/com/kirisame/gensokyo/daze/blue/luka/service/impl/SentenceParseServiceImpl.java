@@ -46,6 +46,8 @@ public class SentenceParseServiceImpl implements SentenceParseService {
                 }
             }
         }
+        String replaceField = ",";
+        String nullField = ",,";
         //解析语句
         List<SentenceParseBase> parseList = parseBaseMapper.queryInclude(sentence);
         SentenceParse sentenceParse = new SentenceParse();
@@ -75,19 +77,18 @@ public class SentenceParseServiceImpl implements SentenceParseService {
                             sentenceParse.setExecuteClass(parse.getWordParse());
                             break;
                     }
-                    sentence = sentence.replace(content, ",");
+                    sentence = sentence.replace(content, replaceField);
                 }
             }
             //处理未解析的数据
-            String nullField = ",,";
             while (sentence.contains(nullField)) {
-                sentence = sentence.replace(nullField, ",");
+                sentence = sentence.replace(nullField, replaceField);
             }
             if (sentence.length() > 1) {
-                if (StringUtils.endsWith(sentence,",")) {
+                if (StringUtils.endsWith(sentence,replaceField)) {
                     sentence = sentence.substring(0, sentence.length() - 1);
                 }
-                List<String> notParseWordList = Arrays.asList(sentence.split(","));
+                List<String> notParseWordList = Arrays.asList(sentence.split(replaceField));
                 sentenceParse.setNotParseWordList(notParseWordList);
             }
         }
