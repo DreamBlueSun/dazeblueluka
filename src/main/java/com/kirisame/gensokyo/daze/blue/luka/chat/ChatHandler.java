@@ -58,15 +58,16 @@ public class ChatHandler extends TextWebSocketHandler {
         //获取发送者名字
         String name = playerMap.get(session.getId()).getName();
         //发送过来的消息
-        String content = (String) jsonObject.get("content");
+        String receiveContent = (String) jsonObject.get("content");
         //处理消息
-        chatRecordService.recordMessage(content, name);
-        SentenceParse sentenceParse = parseService.parseSentence(content);
-        String resultContent = groupService.groupSentence(name, sentenceParse);
+        String receiveId = chatRecordService.receiveRecordMessage(receiveContent, 6810);
+        SentenceParse sentenceParse = parseService.parseSentence(receiveContent);
+        String replyContent = groupService.groupSentence(name, sentenceParse);
+        chatRecordService.replyRecordMessage(receiveId, replyContent, 6810);
         if (session != null && session.isOpen()) {
-            if (StringUtils.isNotBlank(resultContent)) {
+            if (StringUtils.isNotBlank(replyContent)) {
                 //发送消息
-                session.sendMessage(new TextMessage(resultContent));
+                session.sendMessage(new TextMessage(replyContent));
             }
         }
     }

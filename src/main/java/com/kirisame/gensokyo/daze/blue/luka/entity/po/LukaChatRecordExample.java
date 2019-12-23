@@ -444,6 +444,76 @@ public class LukaChatRecordExample {
             addCriterion("`type` not between", value1, value2, "type");
             return (Criteria) this;
         }
+
+        public Criteria andReplayIdIsNull() {
+            addCriterion("replay_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReplayIdIsNotNull() {
+            addCriterion("replay_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReplayIdEqualTo(String value) {
+            addCriterion("replay_id =", value, "replayId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReplayIdNotEqualTo(String value) {
+            addCriterion("replay_id <>", value, "replayId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReplayIdGreaterThan(String value) {
+            addCriterion("replay_id >", value, "replayId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReplayIdGreaterThanOrEqualTo(String value) {
+            addCriterion("replay_id >=", value, "replayId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReplayIdLessThan(String value) {
+            addCriterion("replay_id <", value, "replayId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReplayIdLessThanOrEqualTo(String value) {
+            addCriterion("replay_id <=", value, "replayId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReplayIdLike(String value) {
+            addCriterion("replay_id like", value, "replayId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReplayIdNotLike(String value) {
+            addCriterion("replay_id not like", value, "replayId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReplayIdIn(List<String> values) {
+            addCriterion("replay_id in", values, "replayId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReplayIdNotIn(List<String> values) {
+            addCriterion("replay_id not in", values, "replayId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReplayIdBetween(String value1, String value2) {
+            addCriterion("replay_id between", value1, value2, "replayId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReplayIdNotBetween(String value1, String value2) {
+            addCriterion("replay_id not between", value1, value2, "replayId");
+            return (Criteria) this;
+        }
     }
 
     /**

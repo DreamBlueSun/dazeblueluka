@@ -22,14 +22,26 @@ public class ChatRecordServiceImpl implements ChatRecordService {
     private LukaChatRecordMapper chatRecordMapper;
 
     @Override
-    public void recordMessage(String msg, String userName) {
+    public String receiveRecordMessage(String msg, int pointTo) {
         try {
             String receiveId = UUID.randomUUID().toString().replace("-", "").trim();
-            LukaChatRecord receiveRecord = new LukaChatRecord(receiveId, msg, new Date(), 6810, 0);
+            LukaChatRecord receiveRecord = new LukaChatRecord(receiveId, msg, new Date(), pointTo, 0);
             chatRecordMapper.insert(receiveRecord);
-            String replyId = UUID.randomUUID().toString().replace("-", "").trim();
-            LukaChatRecord replyRecord = new LukaChatRecord(replyId, msg, new Date(), 6810, 1);
-            chatRecordMapper.insert(replyRecord);
+            return receiveId;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public void replyRecordMessage(String receiveId, String msg, int pointTo) {
+        try {
+            if (receiveId != null) {
+                String replyId = UUID.randomUUID().toString().replace("-", "").trim();
+                LukaChatRecord replyRecord = new LukaChatRecord(replyId, msg, new Date(), pointTo, 1, receiveId);
+                chatRecordMapper.insert(replyRecord);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

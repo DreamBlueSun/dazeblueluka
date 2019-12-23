@@ -5,8 +5,7 @@ import java.util.Date;
 
 /**
  * luka_chat_record
- *
- * @author
+ * @author 
  */
 public class LukaChatRecord implements Serializable {
     /**
@@ -34,6 +33,11 @@ public class LukaChatRecord implements Serializable {
      */
     private Integer type;
 
+    /**
+     * 回复消息的id（消息类型为1时有值）
+     */
+    private String replayId;
+
     private static final long serialVersionUID = 1L;
 
     public LukaChatRecord() {
@@ -45,6 +49,15 @@ public class LukaChatRecord implements Serializable {
         this.dateTime = dateTime;
         this.pointTo = pointTo;
         this.type = type;
+    }
+
+    public LukaChatRecord(String id, String message, Date dateTime, Integer pointTo, Integer type, String replayId) {
+        this.id = id;
+        this.message = message;
+        this.dateTime = dateTime;
+        this.pointTo = pointTo;
+        this.type = type;
+        this.replayId = replayId;
     }
 
     public String getId() {
@@ -87,6 +100,14 @@ public class LukaChatRecord implements Serializable {
         this.type = type;
     }
 
+    public String getReplayId() {
+        return replayId;
+    }
+
+    public void setReplayId(String replayId) {
+        this.replayId = replayId;
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -100,10 +121,11 @@ public class LukaChatRecord implements Serializable {
         }
         LukaChatRecord other = (LukaChatRecord) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-                && (this.getMessage() == null ? other.getMessage() == null : this.getMessage().equals(other.getMessage()))
-                && (this.getDateTime() == null ? other.getDateTime() == null : this.getDateTime().equals(other.getDateTime()))
-                && (this.getPointTo() == null ? other.getPointTo() == null : this.getPointTo().equals(other.getPointTo()))
-                && (this.getType() == null ? other.getType() == null : this.getType().equals(other.getType()));
+            && (this.getMessage() == null ? other.getMessage() == null : this.getMessage().equals(other.getMessage()))
+            && (this.getDateTime() == null ? other.getDateTime() == null : this.getDateTime().equals(other.getDateTime()))
+            && (this.getPointTo() == null ? other.getPointTo() == null : this.getPointTo().equals(other.getPointTo()))
+            && (this.getType() == null ? other.getType() == null : this.getType().equals(other.getType()))
+            && (this.getReplayId() == null ? other.getReplayId() == null : this.getReplayId().equals(other.getReplayId()));
     }
 
     @Override
@@ -115,6 +137,7 @@ public class LukaChatRecord implements Serializable {
         result = prime * result + ((getDateTime() == null) ? 0 : getDateTime().hashCode());
         result = prime * result + ((getPointTo() == null) ? 0 : getPointTo().hashCode());
         result = prime * result + ((getType() == null) ? 0 : getType().hashCode());
+        result = prime * result + ((getReplayId() == null) ? 0 : getReplayId().hashCode());
         return result;
     }
 
@@ -129,6 +152,7 @@ public class LukaChatRecord implements Serializable {
         sb.append(", dateTime=").append(dateTime);
         sb.append(", pointTo=").append(pointTo);
         sb.append(", type=").append(type);
+        sb.append(", replayId=").append(replayId);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

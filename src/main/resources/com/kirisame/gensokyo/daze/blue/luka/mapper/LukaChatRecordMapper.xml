@@ -7,6 +7,7 @@
     <result column="date_time" jdbcType="TIMESTAMP" property="dateTime" />
     <result column="point_to" jdbcType="INTEGER" property="pointTo" />
     <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="replay_id" jdbcType="VARCHAR" property="replayId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, message, date_time, point_to, `type`
+    id, message, date_time, point_to, `type`, replay_id
   </sql>
   <select id="selectByExample" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.LukaChatRecordExample" resultMap="BaseResultMap">
     select
@@ -109,9 +110,11 @@
   </delete>
   <insert id="insert" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.LukaChatRecord">
     insert into luka_chat_record (id, message, date_time, 
-      point_to, `type`)
+      point_to, `type`, replay_id
+      )
     values (#{id,jdbcType=VARCHAR}, #{message,jdbcType=VARCHAR}, #{dateTime,jdbcType=TIMESTAMP}, 
-      #{pointTo,jdbcType=INTEGER}, #{type,jdbcType=INTEGER})
+      #{pointTo,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{replayId,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.LukaChatRecord">
     insert into luka_chat_record
@@ -131,6 +134,9 @@
       <if test="type != null">
         `type`,
       </if>
+      <if test="replayId != null">
+        replay_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -147,6 +153,9 @@
       </if>
       <if test="type != null">
         #{type,jdbcType=INTEGER},
+      </if>
+      <if test="replayId != null">
+        #{replayId,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -174,6 +183,9 @@
       <if test="record.type != null">
         `type` = #{record.type,jdbcType=INTEGER},
       </if>
+      <if test="record.replayId != null">
+        replay_id = #{record.replayId,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -185,7 +197,8 @@
       message = #{record.message,jdbcType=VARCHAR},
       date_time = #{record.dateTime,jdbcType=TIMESTAMP},
       point_to = #{record.pointTo,jdbcType=INTEGER},
-      `type` = #{record.type,jdbcType=INTEGER}
+      `type` = #{record.type,jdbcType=INTEGER},
+      replay_id = #{record.replayId,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -205,6 +218,9 @@
       <if test="type != null">
         `type` = #{type,jdbcType=INTEGER},
       </if>
+      <if test="replayId != null">
+        replay_id = #{replayId,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
@@ -213,7 +229,8 @@
     set message = #{message,jdbcType=VARCHAR},
       date_time = #{dateTime,jdbcType=TIMESTAMP},
       point_to = #{pointTo,jdbcType=INTEGER},
-      `type` = #{type,jdbcType=INTEGER}
+      `type` = #{type,jdbcType=INTEGER},
+      replay_id = #{replayId,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>
