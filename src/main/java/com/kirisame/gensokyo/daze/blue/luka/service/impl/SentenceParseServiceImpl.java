@@ -58,18 +58,18 @@ public class SentenceParseServiceImpl implements SentenceParseService {
             for (SentenceParseBase parse : parseListSorted) {
                 String content = parse.getWordContent();
                 if (sentence.contains(content)) {
-                    Integer type = parse.getWordType();
+                    String type = parse.getWordTypeId();
                     switch (type) {
-                        case 0:
+                        case "0":
                             sentenceParse.setExecuteTarget(parse.getWordParse());
                             break;
-                        case 1:
+                        case "1":
                             sentenceParse.setExecuteMethod(parse.getWordParse());
                             break;
-                        case 2:
+                        case "2":
                             sentenceParse.setExecuteParameter(parse.getWordParse());
                             break;
-                        case 3:
+                        case "3":
                             Date date = new SentenceParseUtils<Date>().parseFunction(null, SentenceDateUtils.class, parse.getWordParse());
                             sentenceParse.setExecuteDateTime(date);
                             break;
