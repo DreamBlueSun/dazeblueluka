@@ -1,9 +1,10 @@
 package com.kirisame.gensokyo.daze.blue.luka.entity.po;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-public class EntityPropertiesValueExample {
+public class EntityExample {
     protected String orderByClause;
 
     protected boolean distinct;
@@ -14,7 +15,7 @@ public class EntityPropertiesValueExample {
 
     private Long offset;
 
-    public EntityPropertiesValueExample() {
+    public EntityExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -194,213 +195,63 @@ public class EntityPropertiesValueExample {
             return (Criteria) this;
         }
 
-        public Criteria andEntityIdIsNull() {
-            addCriterion("entity_id is null");
+        public Criteria andCreateTimeIsNull() {
+            addCriterion("create_time is null");
             return (Criteria) this;
         }
 
-        public Criteria andEntityIdIsNotNull() {
-            addCriterion("entity_id is not null");
+        public Criteria andCreateTimeIsNotNull() {
+            addCriterion("create_time is not null");
             return (Criteria) this;
         }
 
-        public Criteria andEntityIdEqualTo(String value) {
-            addCriterion("entity_id =", value, "entityId");
+        public Criteria andCreateTimeEqualTo(Date value) {
+            addCriterion("create_time =", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andEntityIdNotEqualTo(String value) {
-            addCriterion("entity_id <>", value, "entityId");
+        public Criteria andCreateTimeNotEqualTo(Date value) {
+            addCriterion("create_time <>", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andEntityIdGreaterThan(String value) {
-            addCriterion("entity_id >", value, "entityId");
+        public Criteria andCreateTimeGreaterThan(Date value) {
+            addCriterion("create_time >", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andEntityIdGreaterThanOrEqualTo(String value) {
-            addCriterion("entity_id >=", value, "entityId");
+        public Criteria andCreateTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("create_time >=", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andEntityIdLessThan(String value) {
-            addCriterion("entity_id <", value, "entityId");
+        public Criteria andCreateTimeLessThan(Date value) {
+            addCriterion("create_time <", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andEntityIdLessThanOrEqualTo(String value) {
-            addCriterion("entity_id <=", value, "entityId");
+        public Criteria andCreateTimeLessThanOrEqualTo(Date value) {
+            addCriterion("create_time <=", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andEntityIdLike(String value) {
-            addCriterion("entity_id like", value, "entityId");
+        public Criteria andCreateTimeIn(List<Date> values) {
+            addCriterion("create_time in", values, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andEntityIdNotLike(String value) {
-            addCriterion("entity_id not like", value, "entityId");
+        public Criteria andCreateTimeNotIn(List<Date> values) {
+            addCriterion("create_time not in", values, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andEntityIdIn(List<String> values) {
-            addCriterion("entity_id in", values, "entityId");
+        public Criteria andCreateTimeBetween(Date value1, Date value2) {
+            addCriterion("create_time between", value1, value2, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andEntityIdNotIn(List<String> values) {
-            addCriterion("entity_id not in", values, "entityId");
-            return (Criteria) this;
-        }
-
-        public Criteria andEntityIdBetween(String value1, String value2) {
-            addCriterion("entity_id between", value1, value2, "entityId");
-            return (Criteria) this;
-        }
-
-        public Criteria andEntityIdNotBetween(String value1, String value2) {
-            addCriterion("entity_id not between", value1, value2, "entityId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPropertiesIdIsNull() {
-            addCriterion("properties_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPropertiesIdIsNotNull() {
-            addCriterion("properties_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPropertiesIdEqualTo(String value) {
-            addCriterion("properties_id =", value, "propertiesId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPropertiesIdNotEqualTo(String value) {
-            addCriterion("properties_id <>", value, "propertiesId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPropertiesIdGreaterThan(String value) {
-            addCriterion("properties_id >", value, "propertiesId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPropertiesIdGreaterThanOrEqualTo(String value) {
-            addCriterion("properties_id >=", value, "propertiesId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPropertiesIdLessThan(String value) {
-            addCriterion("properties_id <", value, "propertiesId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPropertiesIdLessThanOrEqualTo(String value) {
-            addCriterion("properties_id <=", value, "propertiesId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPropertiesIdLike(String value) {
-            addCriterion("properties_id like", value, "propertiesId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPropertiesIdNotLike(String value) {
-            addCriterion("properties_id not like", value, "propertiesId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPropertiesIdIn(List<String> values) {
-            addCriterion("properties_id in", values, "propertiesId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPropertiesIdNotIn(List<String> values) {
-            addCriterion("properties_id not in", values, "propertiesId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPropertiesIdBetween(String value1, String value2) {
-            addCriterion("properties_id between", value1, value2, "propertiesId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPropertiesIdNotBetween(String value1, String value2) {
-            addCriterion("properties_id not between", value1, value2, "propertiesId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPropertiesValueIsNull() {
-            addCriterion("properties_value is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPropertiesValueIsNotNull() {
-            addCriterion("properties_value is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPropertiesValueEqualTo(String value) {
-            addCriterion("properties_value =", value, "propertiesValue");
-            return (Criteria) this;
-        }
-
-        public Criteria andPropertiesValueNotEqualTo(String value) {
-            addCriterion("properties_value <>", value, "propertiesValue");
-            return (Criteria) this;
-        }
-
-        public Criteria andPropertiesValueGreaterThan(String value) {
-            addCriterion("properties_value >", value, "propertiesValue");
-            return (Criteria) this;
-        }
-
-        public Criteria andPropertiesValueGreaterThanOrEqualTo(String value) {
-            addCriterion("properties_value >=", value, "propertiesValue");
-            return (Criteria) this;
-        }
-
-        public Criteria andPropertiesValueLessThan(String value) {
-            addCriterion("properties_value <", value, "propertiesValue");
-            return (Criteria) this;
-        }
-
-        public Criteria andPropertiesValueLessThanOrEqualTo(String value) {
-            addCriterion("properties_value <=", value, "propertiesValue");
-            return (Criteria) this;
-        }
-
-        public Criteria andPropertiesValueLike(String value) {
-            addCriterion("properties_value like", value, "propertiesValue");
-            return (Criteria) this;
-        }
-
-        public Criteria andPropertiesValueNotLike(String value) {
-            addCriterion("properties_value not like", value, "propertiesValue");
-            return (Criteria) this;
-        }
-
-        public Criteria andPropertiesValueIn(List<String> values) {
-            addCriterion("properties_value in", values, "propertiesValue");
-            return (Criteria) this;
-        }
-
-        public Criteria andPropertiesValueNotIn(List<String> values) {
-            addCriterion("properties_value not in", values, "propertiesValue");
-            return (Criteria) this;
-        }
-
-        public Criteria andPropertiesValueBetween(String value1, String value2) {
-            addCriterion("properties_value between", value1, value2, "propertiesValue");
-            return (Criteria) this;
-        }
-
-        public Criteria andPropertiesValueNotBetween(String value1, String value2) {
-            addCriterion("properties_value not between", value1, value2, "propertiesValue");
+        public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
+            addCriterion("create_time not between", value1, value2, "createTime");
             return (Criteria) this;
         }
     }

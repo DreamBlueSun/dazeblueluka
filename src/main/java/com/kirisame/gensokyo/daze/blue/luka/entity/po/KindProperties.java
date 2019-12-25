@@ -7,6 +7,9 @@ import java.io.Serializable;
  * @author 
  */
 public class KindProperties implements Serializable {
+    /**
+     * id
+     */
     private String id;
 
     /**

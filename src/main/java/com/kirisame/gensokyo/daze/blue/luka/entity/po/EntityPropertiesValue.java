@@ -8,9 +8,14 @@ import java.io.Serializable;
  */
 public class EntityPropertiesValue implements Serializable {
     /**
-     * 实体id
+     * id
      */
     private String id;
+
+    /**
+     * 实体id
+     */
+    private String entityId;
 
     /**
      * 属性的id
@@ -30,6 +35,14 @@ public class EntityPropertiesValue implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getEntityId() {
+        return entityId;
+    }
+
+    public void setEntityId(String entityId) {
+        this.entityId = entityId;
     }
 
     public String getPropertiesId() {
@@ -61,6 +74,7 @@ public class EntityPropertiesValue implements Serializable {
         }
         EntityPropertiesValue other = (EntityPropertiesValue) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
+            && (this.getEntityId() == null ? other.getEntityId() == null : this.getEntityId().equals(other.getEntityId()))
             && (this.getPropertiesId() == null ? other.getPropertiesId() == null : this.getPropertiesId().equals(other.getPropertiesId()))
             && (this.getPropertiesValue() == null ? other.getPropertiesValue() == null : this.getPropertiesValue().equals(other.getPropertiesValue()));
     }
@@ -70,6 +84,7 @@ public class EntityPropertiesValue implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+        result = prime * result + ((getEntityId() == null) ? 0 : getEntityId().hashCode());
         result = prime * result + ((getPropertiesId() == null) ? 0 : getPropertiesId().hashCode());
         result = prime * result + ((getPropertiesValue() == null) ? 0 : getPropertiesValue().hashCode());
         return result;
@@ -82,6 +97,7 @@ public class EntityPropertiesValue implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
+        sb.append(", entityId=").append(entityId);
         sb.append(", propertiesId=").append(propertiesId);
         sb.append(", propertiesValue=").append(propertiesValue);
         sb.append(", serialVersionUID=").append(serialVersionUID);

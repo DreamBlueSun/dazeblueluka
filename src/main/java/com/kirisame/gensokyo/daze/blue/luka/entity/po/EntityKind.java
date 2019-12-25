@@ -7,6 +7,9 @@ import java.io.Serializable;
  * @author 
  */
 public class EntityKind implements Serializable {
+    /**
+     * id
+     */
     private String id;
 
     /**

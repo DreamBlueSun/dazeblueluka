@@ -9,6 +9,9 @@ import java.util.Date;
  * @author
  */
 public class SentenceParseBase implements Serializable {
+    /**
+     * id
+     */
     private String id;
 
     /**

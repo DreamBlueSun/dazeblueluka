@@ -1,5 +1,6 @@
 package com.kirisame.gensokyo.daze.blue.luka.service.impl;
 
+import com.kirisame.gensokyo.daze.blue.luka.constant.ConstantSentenceGroup;
 import com.kirisame.gensokyo.daze.blue.luka.entity.bo.SentenceParse;
 import com.kirisame.gensokyo.daze.blue.luka.service.SentenceGroupService;
 import com.kirisame.gensokyo.daze.blue.luka.util.SentenceParseUtils;
@@ -27,7 +28,7 @@ public class SentenceGroupServiceImpl implements SentenceGroupService {
         //TODO 执行目标
         String target = sentenceParse.getExecuteTarget();
         //解析、返回
-        String executeType = sentenceParse.getExecuteClass();
+        String executeType = ConstantSentenceGroup.GROUP_CLASS_PREFIX + sentenceParse.getExecuteClass();
         String executeContent = sentenceParse.getExecuteMethod();
         String executeParameter = sentenceParse.getExecuteParameter();
         String executeResult = new SentenceParseUtils<String>().parseFunction(null, executeType, executeContent, target);

@@ -7,6 +7,9 @@ import java.io.Serializable;
  * @author 
  */
 public class WordType implements Serializable {
+    /**
+     * id
+     */
     private String id;
 
     /**

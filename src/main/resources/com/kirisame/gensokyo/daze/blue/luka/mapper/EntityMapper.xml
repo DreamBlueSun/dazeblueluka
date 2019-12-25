@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.kirisame.gensokyo.daze.blue.luka.mapper.EntityPropertiesValueMapper">
-  <resultMap id="BaseResultMap" type="com.kirisame.gensokyo.daze.blue.luka.entity.po.EntityPropertiesValue">
+<mapper namespace="com.kirisame.gensokyo.daze.blue.luka.mapper.EntityMapper">
+  <resultMap id="BaseResultMap" type="com.kirisame.gensokyo.daze.blue.luka.entity.po.Entity">
     <id column="id" jdbcType="VARCHAR" property="id" />
-    <result column="entity_id" jdbcType="VARCHAR" property="entityId" />
-    <result column="properties_id" jdbcType="VARCHAR" property="propertiesId" />
-    <result column="properties_value" jdbcType="VARCHAR" property="propertiesValue" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,15 +64,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, entity_id, properties_id, properties_value
+    id, create_time
   </sql>
-  <select id="selectByExample" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.EntityPropertiesValueExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.EntityExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from entity_properties_value
+    from entity
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -93,76 +91,56 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from entity_properties_value
+    from entity
     where id = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from entity_properties_value
+    delete from entity
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.EntityPropertiesValueExample">
-    delete from entity_properties_value
+  <delete id="deleteByExample" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.EntityExample">
+    delete from entity
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.EntityPropertiesValue">
-    insert into entity_properties_value (id, entity_id, properties_id, 
-      properties_value)
-    values (#{id,jdbcType=VARCHAR}, #{entityId,jdbcType=VARCHAR}, #{propertiesId,jdbcType=VARCHAR}, 
-      #{propertiesValue,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.Entity">
+    insert into entity (id, create_time)
+    values (#{id,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.EntityPropertiesValue">
-    insert into entity_properties_value
+  <insert id="insertSelective" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.Entity">
+    insert into entity
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
-      <if test="entityId != null">
-        entity_id,
-      </if>
-      <if test="propertiesId != null">
-        properties_id,
-      </if>
-      <if test="propertiesValue != null">
-        properties_value,
+      <if test="createTime != null">
+        create_time,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=VARCHAR},
       </if>
-      <if test="entityId != null">
-        #{entityId,jdbcType=VARCHAR},
-      </if>
-      <if test="propertiesId != null">
-        #{propertiesId,jdbcType=VARCHAR},
-      </if>
-      <if test="propertiesValue != null">
-        #{propertiesValue,jdbcType=VARCHAR},
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.EntityPropertiesValueExample" resultType="java.lang.Long">
-    select count(*) from entity_properties_value
+  <select id="countByExample" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.EntityExample" resultType="java.lang.Long">
+    select count(*) from entity
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update entity_properties_value
+    update entity
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=VARCHAR},
       </if>
-      <if test="record.entityId != null">
-        entity_id = #{record.entityId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.propertiesId != null">
-        properties_id = #{record.propertiesId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.propertiesValue != null">
-        properties_value = #{record.propertiesValue,jdbcType=VARCHAR},
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null">
@@ -170,35 +148,25 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update entity_properties_value
+    update entity
     set id = #{record.id,jdbcType=VARCHAR},
-      entity_id = #{record.entityId,jdbcType=VARCHAR},
-      properties_id = #{record.propertiesId,jdbcType=VARCHAR},
-      properties_value = #{record.propertiesValue,jdbcType=VARCHAR}
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.EntityPropertiesValue">
-    update entity_properties_value
+  <update id="updateByPrimaryKeySelective" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.Entity">
+    update entity
     <set>
-      <if test="entityId != null">
-        entity_id = #{entityId,jdbcType=VARCHAR},
-      </if>
-      <if test="propertiesId != null">
-        properties_id = #{propertiesId,jdbcType=VARCHAR},
-      </if>
-      <if test="propertiesValue != null">
-        properties_value = #{propertiesValue,jdbcType=VARCHAR},
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.EntityPropertiesValue">
-    update entity_properties_value
-    set entity_id = #{entityId,jdbcType=VARCHAR},
-      properties_id = #{propertiesId,jdbcType=VARCHAR},
-      properties_value = #{propertiesValue,jdbcType=VARCHAR}
+  <update id="updateByPrimaryKey" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.Entity">
+    update entity
+    set create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

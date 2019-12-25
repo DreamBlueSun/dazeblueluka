@@ -1,26 +1,22 @@
 package com.kirisame.gensokyo.daze.blue.luka.entity.po;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
- * kind
+ * entity
  * @author 
  */
-public class Kind implements Serializable {
+public class Entity implements Serializable {
     /**
      * id
      */
     private String id;
 
     /**
-     * 种类名称
+     * 创建日期
      */
-    private String kindName;
-
-    /**
-     * 种类详细说明
-     */
-    private String kindDesc;
+    private Date createTime;
 
     private static final long serialVersionUID = 1L;
 
@@ -32,20 +28,12 @@ public class Kind implements Serializable {
         this.id = id;
     }
 
-    public String getKindName() {
-        return kindName;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setKindName(String kindName) {
-        this.kindName = kindName;
-    }
-
-    public String getKindDesc() {
-        return kindDesc;
-    }
-
-    public void setKindDesc(String kindDesc) {
-        this.kindDesc = kindDesc;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     @Override
@@ -59,10 +47,9 @@ public class Kind implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        Kind other = (Kind) that;
+        Entity other = (Entity) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getKindName() == null ? other.getKindName() == null : this.getKindName().equals(other.getKindName()))
-            && (this.getKindDesc() == null ? other.getKindDesc() == null : this.getKindDesc().equals(other.getKindDesc()));
+            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()));
     }
 
     @Override
@@ -70,8 +57,7 @@ public class Kind implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getKindName() == null) ? 0 : getKindName().hashCode());
-        result = prime * result + ((getKindDesc() == null) ? 0 : getKindDesc().hashCode());
+        result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         return result;
     }
 
@@ -82,8 +68,7 @@ public class Kind implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", kindName=").append(kindName);
-        sb.append(", kindDesc=").append(kindDesc);
+        sb.append(", createTime=").append(createTime);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

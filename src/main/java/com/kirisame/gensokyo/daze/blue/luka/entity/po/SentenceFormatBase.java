@@ -8,6 +8,9 @@ import java.util.Date;
  * @author 
  */
 public class SentenceFormatBase implements Serializable {
+    /**
+     * id
+     */
     private String id;
 
     /**

@@ -7,10 +7,13 @@ import java.io.Serializable;
  * @author 
  */
 public class Properties implements Serializable {
+    /**
+     * id
+     */
     private String id;
 
     /**
-     * 属性名称（可重复，两种种类可有相同属性：乌龟和狗都有年龄，但是年龄具体上限不一致）
+     * 属性名称
      */
     private String propertiesName;
 
