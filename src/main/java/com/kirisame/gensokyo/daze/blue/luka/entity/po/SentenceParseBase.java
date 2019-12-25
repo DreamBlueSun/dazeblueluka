@@ -5,8 +5,7 @@ import java.util.Date;
 
 /**
  * sentence_parse_base
- *
- * @author
+ * @author 
  */
 public class SentenceParseBase implements Serializable {
     /**
@@ -20,14 +19,9 @@ public class SentenceParseBase implements Serializable {
     private String wordContent;
 
     /**
-     * 单词类型（0：对象；1：内容；2：参数，3：时间；4：询问-；5：动作-）（带-标识的类型，解析对象中同时仅存在一个）
+     * 单词解析（根据单词类型不同，解析也不同）
      */
-    private Integer wordType;
-
-    /**
-     * 词义（暂无作用）
-     */
-    private String wordDescribe;
+    private String wordParse;
 
     /**
      * 录入时间
@@ -35,11 +29,20 @@ public class SentenceParseBase implements Serializable {
     private Date enterDate;
 
     /**
-     * 单词解析（根据单词类型不同，解析也不同）
+     * 单词类型的id
      */
-    private String wordParse;
+    private String wordTypeId;
+
+    /**
+     * 词义（暂无作用）
+     */
+    private String wordDescribe;
 
     private static final long serialVersionUID = 1L;
+
+    public int wordContentLength() {
+        return wordContent.length();
+    }
 
     public String getId() {
         return id;
@@ -57,20 +60,12 @@ public class SentenceParseBase implements Serializable {
         this.wordContent = wordContent;
     }
 
-    public Integer getWordType() {
-        return wordType;
+    public String getWordParse() {
+        return wordParse;
     }
 
-    public void setWordType(Integer wordType) {
-        this.wordType = wordType;
-    }
-
-    public String getWordDescribe() {
-        return wordDescribe;
-    }
-
-    public void setWordDescribe(String wordDescribe) {
-        this.wordDescribe = wordDescribe;
+    public void setWordParse(String wordParse) {
+        this.wordParse = wordParse;
     }
 
     public Date getEnterDate() {
@@ -81,16 +76,20 @@ public class SentenceParseBase implements Serializable {
         this.enterDate = enterDate;
     }
 
-    public String getWordParse() {
-        return wordParse;
+    public String getWordTypeId() {
+        return wordTypeId;
     }
 
-    public void setWordParse(String wordParse) {
-        this.wordParse = wordParse;
+    public void setWordTypeId(String wordTypeId) {
+        this.wordTypeId = wordTypeId;
     }
 
-    public int wordContentLength() {
-        return wordContent.length();
+    public String getWordDescribe() {
+        return wordDescribe;
+    }
+
+    public void setWordDescribe(String wordDescribe) {
+        this.wordDescribe = wordDescribe;
     }
 
     @Override
@@ -106,11 +105,11 @@ public class SentenceParseBase implements Serializable {
         }
         SentenceParseBase other = (SentenceParseBase) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-                && (this.getWordContent() == null ? other.getWordContent() == null : this.getWordContent().equals(other.getWordContent()))
-                && (this.getWordType() == null ? other.getWordType() == null : this.getWordType().equals(other.getWordType()))
-                && (this.getWordDescribe() == null ? other.getWordDescribe() == null : this.getWordDescribe().equals(other.getWordDescribe()))
-                && (this.getEnterDate() == null ? other.getEnterDate() == null : this.getEnterDate().equals(other.getEnterDate()))
-                && (this.getWordParse() == null ? other.getWordParse() == null : this.getWordParse().equals(other.getWordParse()));
+            && (this.getWordContent() == null ? other.getWordContent() == null : this.getWordContent().equals(other.getWordContent()))
+            && (this.getWordParse() == null ? other.getWordParse() == null : this.getWordParse().equals(other.getWordParse()))
+            && (this.getEnterDate() == null ? other.getEnterDate() == null : this.getEnterDate().equals(other.getEnterDate()))
+            && (this.getWordTypeId() == null ? other.getWordTypeId() == null : this.getWordTypeId().equals(other.getWordTypeId()))
+            && (this.getWordDescribe() == null ? other.getWordDescribe() == null : this.getWordDescribe().equals(other.getWordDescribe()));
     }
 
     @Override
@@ -119,10 +118,10 @@ public class SentenceParseBase implements Serializable {
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
         result = prime * result + ((getWordContent() == null) ? 0 : getWordContent().hashCode());
-        result = prime * result + ((getWordType() == null) ? 0 : getWordType().hashCode());
-        result = prime * result + ((getWordDescribe() == null) ? 0 : getWordDescribe().hashCode());
-        result = prime * result + ((getEnterDate() == null) ? 0 : getEnterDate().hashCode());
         result = prime * result + ((getWordParse() == null) ? 0 : getWordParse().hashCode());
+        result = prime * result + ((getEnterDate() == null) ? 0 : getEnterDate().hashCode());
+        result = prime * result + ((getWordTypeId() == null) ? 0 : getWordTypeId().hashCode());
+        result = prime * result + ((getWordDescribe() == null) ? 0 : getWordDescribe().hashCode());
         return result;
     }
 
@@ -134,10 +133,10 @@ public class SentenceParseBase implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", wordContent=").append(wordContent);
-        sb.append(", wordType=").append(wordType);
-        sb.append(", wordDescribe=").append(wordDescribe);
-        sb.append(", enterDate=").append(enterDate);
         sb.append(", wordParse=").append(wordParse);
+        sb.append(", enterDate=").append(enterDate);
+        sb.append(", wordTypeId=").append(wordTypeId);
+        sb.append(", wordDescribe=").append(wordDescribe);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

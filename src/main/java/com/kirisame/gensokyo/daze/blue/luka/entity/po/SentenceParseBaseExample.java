@@ -265,63 +265,203 @@ public class SentenceParseBaseExample {
             return (Criteria) this;
         }
 
-        public Criteria andWordTypeIsNull() {
-            addCriterion("word_type is null");
+        public Criteria andWordParseIsNull() {
+            addCriterion("word_parse is null");
             return (Criteria) this;
         }
 
-        public Criteria andWordTypeIsNotNull() {
-            addCriterion("word_type is not null");
+        public Criteria andWordParseIsNotNull() {
+            addCriterion("word_parse is not null");
             return (Criteria) this;
         }
 
-        public Criteria andWordTypeEqualTo(Integer value) {
-            addCriterion("word_type =", value, "wordType");
+        public Criteria andWordParseEqualTo(String value) {
+            addCriterion("word_parse =", value, "wordParse");
             return (Criteria) this;
         }
 
-        public Criteria andWordTypeNotEqualTo(Integer value) {
-            addCriterion("word_type <>", value, "wordType");
+        public Criteria andWordParseNotEqualTo(String value) {
+            addCriterion("word_parse <>", value, "wordParse");
             return (Criteria) this;
         }
 
-        public Criteria andWordTypeGreaterThan(Integer value) {
-            addCriterion("word_type >", value, "wordType");
+        public Criteria andWordParseGreaterThan(String value) {
+            addCriterion("word_parse >", value, "wordParse");
             return (Criteria) this;
         }
 
-        public Criteria andWordTypeGreaterThanOrEqualTo(Integer value) {
-            addCriterion("word_type >=", value, "wordType");
+        public Criteria andWordParseGreaterThanOrEqualTo(String value) {
+            addCriterion("word_parse >=", value, "wordParse");
             return (Criteria) this;
         }
 
-        public Criteria andWordTypeLessThan(Integer value) {
-            addCriterion("word_type <", value, "wordType");
+        public Criteria andWordParseLessThan(String value) {
+            addCriterion("word_parse <", value, "wordParse");
             return (Criteria) this;
         }
 
-        public Criteria andWordTypeLessThanOrEqualTo(Integer value) {
-            addCriterion("word_type <=", value, "wordType");
+        public Criteria andWordParseLessThanOrEqualTo(String value) {
+            addCriterion("word_parse <=", value, "wordParse");
             return (Criteria) this;
         }
 
-        public Criteria andWordTypeIn(List<Integer> values) {
-            addCriterion("word_type in", values, "wordType");
+        public Criteria andWordParseLike(String value) {
+            addCriterion("word_parse like", value, "wordParse");
             return (Criteria) this;
         }
 
-        public Criteria andWordTypeNotIn(List<Integer> values) {
-            addCriterion("word_type not in", values, "wordType");
+        public Criteria andWordParseNotLike(String value) {
+            addCriterion("word_parse not like", value, "wordParse");
             return (Criteria) this;
         }
 
-        public Criteria andWordTypeBetween(Integer value1, Integer value2) {
-            addCriterion("word_type between", value1, value2, "wordType");
+        public Criteria andWordParseIn(List<String> values) {
+            addCriterion("word_parse in", values, "wordParse");
             return (Criteria) this;
         }
 
-        public Criteria andWordTypeNotBetween(Integer value1, Integer value2) {
-            addCriterion("word_type not between", value1, value2, "wordType");
+        public Criteria andWordParseNotIn(List<String> values) {
+            addCriterion("word_parse not in", values, "wordParse");
+            return (Criteria) this;
+        }
+
+        public Criteria andWordParseBetween(String value1, String value2) {
+            addCriterion("word_parse between", value1, value2, "wordParse");
+            return (Criteria) this;
+        }
+
+        public Criteria andWordParseNotBetween(String value1, String value2) {
+            addCriterion("word_parse not between", value1, value2, "wordParse");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnterDateIsNull() {
+            addCriterion("enter_date is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnterDateIsNotNull() {
+            addCriterion("enter_date is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnterDateEqualTo(Date value) {
+            addCriterion("enter_date =", value, "enterDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnterDateNotEqualTo(Date value) {
+            addCriterion("enter_date <>", value, "enterDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnterDateGreaterThan(Date value) {
+            addCriterion("enter_date >", value, "enterDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnterDateGreaterThanOrEqualTo(Date value) {
+            addCriterion("enter_date >=", value, "enterDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnterDateLessThan(Date value) {
+            addCriterion("enter_date <", value, "enterDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnterDateLessThanOrEqualTo(Date value) {
+            addCriterion("enter_date <=", value, "enterDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnterDateIn(List<Date> values) {
+            addCriterion("enter_date in", values, "enterDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnterDateNotIn(List<Date> values) {
+            addCriterion("enter_date not in", values, "enterDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnterDateBetween(Date value1, Date value2) {
+            addCriterion("enter_date between", value1, value2, "enterDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnterDateNotBetween(Date value1, Date value2) {
+            addCriterion("enter_date not between", value1, value2, "enterDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andWordTypeIdIsNull() {
+            addCriterion("word_type_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWordTypeIdIsNotNull() {
+            addCriterion("word_type_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWordTypeIdEqualTo(String value) {
+            addCriterion("word_type_id =", value, "wordTypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWordTypeIdNotEqualTo(String value) {
+            addCriterion("word_type_id <>", value, "wordTypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWordTypeIdGreaterThan(String value) {
+            addCriterion("word_type_id >", value, "wordTypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWordTypeIdGreaterThanOrEqualTo(String value) {
+            addCriterion("word_type_id >=", value, "wordTypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWordTypeIdLessThan(String value) {
+            addCriterion("word_type_id <", value, "wordTypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWordTypeIdLessThanOrEqualTo(String value) {
+            addCriterion("word_type_id <=", value, "wordTypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWordTypeIdLike(String value) {
+            addCriterion("word_type_id like", value, "wordTypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWordTypeIdNotLike(String value) {
+            addCriterion("word_type_id not like", value, "wordTypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWordTypeIdIn(List<String> values) {
+            addCriterion("word_type_id in", values, "wordTypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWordTypeIdNotIn(List<String> values) {
+            addCriterion("word_type_id not in", values, "wordTypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWordTypeIdBetween(String value1, String value2) {
+            addCriterion("word_type_id between", value1, value2, "wordTypeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWordTypeIdNotBetween(String value1, String value2) {
+            addCriterion("word_type_id not between", value1, value2, "wordTypeId");
             return (Criteria) this;
         }
 
@@ -392,136 +532,6 @@ public class SentenceParseBaseExample {
 
         public Criteria andWordDescribeNotBetween(String value1, String value2) {
             addCriterion("word_describe not between", value1, value2, "wordDescribe");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnterDateIsNull() {
-            addCriterion("enter_date is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnterDateIsNotNull() {
-            addCriterion("enter_date is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnterDateEqualTo(Date value) {
-            addCriterion("enter_date =", value, "enterDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnterDateNotEqualTo(Date value) {
-            addCriterion("enter_date <>", value, "enterDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnterDateGreaterThan(Date value) {
-            addCriterion("enter_date >", value, "enterDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnterDateGreaterThanOrEqualTo(Date value) {
-            addCriterion("enter_date >=", value, "enterDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnterDateLessThan(Date value) {
-            addCriterion("enter_date <", value, "enterDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnterDateLessThanOrEqualTo(Date value) {
-            addCriterion("enter_date <=", value, "enterDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnterDateIn(List<Date> values) {
-            addCriterion("enter_date in", values, "enterDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnterDateNotIn(List<Date> values) {
-            addCriterion("enter_date not in", values, "enterDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnterDateBetween(Date value1, Date value2) {
-            addCriterion("enter_date between", value1, value2, "enterDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnterDateNotBetween(Date value1, Date value2) {
-            addCriterion("enter_date not between", value1, value2, "enterDate");
-            return (Criteria) this;
-        }
-
-        public Criteria andWordParseIsNull() {
-            addCriterion("word_parse is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andWordParseIsNotNull() {
-            addCriterion("word_parse is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andWordParseEqualTo(String value) {
-            addCriterion("word_parse =", value, "wordParse");
-            return (Criteria) this;
-        }
-
-        public Criteria andWordParseNotEqualTo(String value) {
-            addCriterion("word_parse <>", value, "wordParse");
-            return (Criteria) this;
-        }
-
-        public Criteria andWordParseGreaterThan(String value) {
-            addCriterion("word_parse >", value, "wordParse");
-            return (Criteria) this;
-        }
-
-        public Criteria andWordParseGreaterThanOrEqualTo(String value) {
-            addCriterion("word_parse >=", value, "wordParse");
-            return (Criteria) this;
-        }
-
-        public Criteria andWordParseLessThan(String value) {
-            addCriterion("word_parse <", value, "wordParse");
-            return (Criteria) this;
-        }
-
-        public Criteria andWordParseLessThanOrEqualTo(String value) {
-            addCriterion("word_parse <=", value, "wordParse");
-            return (Criteria) this;
-        }
-
-        public Criteria andWordParseLike(String value) {
-            addCriterion("word_parse like", value, "wordParse");
-            return (Criteria) this;
-        }
-
-        public Criteria andWordParseNotLike(String value) {
-            addCriterion("word_parse not like", value, "wordParse");
-            return (Criteria) this;
-        }
-
-        public Criteria andWordParseIn(List<String> values) {
-            addCriterion("word_parse in", values, "wordParse");
-            return (Criteria) this;
-        }
-
-        public Criteria andWordParseNotIn(List<String> values) {
-            addCriterion("word_parse not in", values, "wordParse");
-            return (Criteria) this;
-        }
-
-        public Criteria andWordParseBetween(String value1, String value2) {
-            addCriterion("word_parse between", value1, value2, "wordParse");
-            return (Criteria) this;
-        }
-
-        public Criteria andWordParseNotBetween(String value1, String value2) {
-            addCriterion("word_parse not between", value1, value2, "wordParse");
             return (Criteria) this;
         }
     }

@@ -39,4 +39,5 @@ public interface SentenceParseBaseMapper {
      * @date 2019/12/18 16:07
      **/
     List<SentenceParseBase> queryInclude(@Param("sentence") String sentence);
+
 }

@@ -4,10 +4,10 @@
   <resultMap id="BaseResultMap" type="com.kirisame.gensokyo.daze.blue.luka.entity.po.SentenceParseBase">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="word_content" jdbcType="VARCHAR" property="wordContent" />
-    <result column="word_type" jdbcType="INTEGER" property="wordType" />
-    <result column="word_describe" jdbcType="VARCHAR" property="wordDescribe" />
-    <result column="enter_date" jdbcType="TIMESTAMP" property="enterDate" />
     <result column="word_parse" jdbcType="VARCHAR" property="wordParse" />
+    <result column="enter_date" jdbcType="TIMESTAMP" property="enterDate" />
+    <result column="word_type_id" jdbcType="VARCHAR" property="wordTypeId" />
+    <result column="word_describe" jdbcType="VARCHAR" property="wordDescribe" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, word_content, word_type, word_describe, enter_date, word_parse
+    id, word_content, word_parse, enter_date, word_type_id, word_describe
   </sql>
   <select id="selectByExample" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.SentenceParseBaseExample" resultMap="BaseResultMap">
     select
@@ -109,11 +109,11 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.SentenceParseBase">
-    insert into sentence_parse_base (id, word_content, word_type, 
-      word_describe, enter_date, word_parse
+    insert into sentence_parse_base (id, word_content, word_parse, 
+      enter_date, word_type_id, word_describe
       )
-    values (#{id,jdbcType=VARCHAR}, #{wordContent,jdbcType=VARCHAR}, #{wordType,jdbcType=INTEGER}, 
-      #{wordDescribe,jdbcType=VARCHAR}, #{enterDate,jdbcType=TIMESTAMP}, #{wordParse,jdbcType=VARCHAR}
+    values (#{id,jdbcType=VARCHAR}, #{wordContent,jdbcType=VARCHAR}, #{wordParse,jdbcType=VARCHAR}, 
+      #{enterDate,jdbcType=TIMESTAMP}, #{wordTypeId,jdbcType=VARCHAR}, #{wordDescribe,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.SentenceParseBase">
@@ -125,17 +125,17 @@
       <if test="wordContent != null">
         word_content,
       </if>
-      <if test="wordType != null">
-        word_type,
-      </if>
-      <if test="wordDescribe != null">
-        word_describe,
+      <if test="wordParse != null">
+        word_parse,
       </if>
       <if test="enterDate != null">
         enter_date,
       </if>
-      <if test="wordParse != null">
-        word_parse,
+      <if test="wordTypeId != null">
+        word_type_id,
+      </if>
+      <if test="wordDescribe != null">
+        word_describe,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -145,17 +145,17 @@
       <if test="wordContent != null">
         #{wordContent,jdbcType=VARCHAR},
       </if>
-      <if test="wordType != null">
-        #{wordType,jdbcType=INTEGER},
-      </if>
-      <if test="wordDescribe != null">
-        #{wordDescribe,jdbcType=VARCHAR},
+      <if test="wordParse != null">
+        #{wordParse,jdbcType=VARCHAR},
       </if>
       <if test="enterDate != null">
         #{enterDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="wordParse != null">
-        #{wordParse,jdbcType=VARCHAR},
+      <if test="wordTypeId != null">
+        #{wordTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="wordDescribe != null">
+        #{wordDescribe,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -174,17 +174,17 @@
       <if test="record.wordContent != null">
         word_content = #{record.wordContent,jdbcType=VARCHAR},
       </if>
-      <if test="record.wordType != null">
-        word_type = #{record.wordType,jdbcType=INTEGER},
-      </if>
-      <if test="record.wordDescribe != null">
-        word_describe = #{record.wordDescribe,jdbcType=VARCHAR},
+      <if test="record.wordParse != null">
+        word_parse = #{record.wordParse,jdbcType=VARCHAR},
       </if>
       <if test="record.enterDate != null">
         enter_date = #{record.enterDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.wordParse != null">
-        word_parse = #{record.wordParse,jdbcType=VARCHAR},
+      <if test="record.wordTypeId != null">
+        word_type_id = #{record.wordTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wordDescribe != null">
+        word_describe = #{record.wordDescribe,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -195,10 +195,10 @@
     update sentence_parse_base
     set id = #{record.id,jdbcType=VARCHAR},
       word_content = #{record.wordContent,jdbcType=VARCHAR},
-      word_type = #{record.wordType,jdbcType=INTEGER},
-      word_describe = #{record.wordDescribe,jdbcType=VARCHAR},
+      word_parse = #{record.wordParse,jdbcType=VARCHAR},
       enter_date = #{record.enterDate,jdbcType=TIMESTAMP},
-      word_parse = #{record.wordParse,jdbcType=VARCHAR}
+      word_type_id = #{record.wordTypeId,jdbcType=VARCHAR},
+      word_describe = #{record.wordDescribe,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -209,17 +209,17 @@
       <if test="wordContent != null">
         word_content = #{wordContent,jdbcType=VARCHAR},
       </if>
-      <if test="wordType != null">
-        word_type = #{wordType,jdbcType=INTEGER},
-      </if>
-      <if test="wordDescribe != null">
-        word_describe = #{wordDescribe,jdbcType=VARCHAR},
+      <if test="wordParse != null">
+        word_parse = #{wordParse,jdbcType=VARCHAR},
       </if>
       <if test="enterDate != null">
         enter_date = #{enterDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="wordParse != null">
-        word_parse = #{wordParse,jdbcType=VARCHAR},
+      <if test="wordTypeId != null">
+        word_type_id = #{wordTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="wordDescribe != null">
+        word_describe = #{wordDescribe,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
@@ -227,10 +227,10 @@
   <update id="updateByPrimaryKey" parameterType="com.kirisame.gensokyo.daze.blue.luka.entity.po.SentenceParseBase">
     update sentence_parse_base
     set word_content = #{wordContent,jdbcType=VARCHAR},
-      word_type = #{wordType,jdbcType=INTEGER},
-      word_describe = #{wordDescribe,jdbcType=VARCHAR},
+      word_parse = #{wordParse,jdbcType=VARCHAR},
       enter_date = #{enterDate,jdbcType=TIMESTAMP},
-      word_parse = #{wordParse,jdbcType=VARCHAR}
+      word_type_id = #{wordTypeId,jdbcType=VARCHAR},
+      word_describe = #{wordDescribe,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <select id="queryInclude" parameterType="java.lang.String" resultMap="BaseResultMap">
