@@ -1,13 +1,14 @@
 package com.kirisame.gensokyo.daze.blue.luka.service.impl;
 
 import com.kirisame.gensokyo.daze.blue.luka.constant.ConstantSentenceGroup;
+import com.kirisame.gensokyo.daze.blue.luka.constant.ConstantSentenceParse;
 import com.kirisame.gensokyo.daze.blue.luka.entity.bo.SentenceParse;
 import com.kirisame.gensokyo.daze.blue.luka.service.SentenceGroupService;
 import com.kirisame.gensokyo.daze.blue.luka.util.SentenceParseUtils;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @description:
@@ -23,20 +24,22 @@ public class SentenceGroupServiceImpl implements SentenceGroupService {
         if (notParseWordList != null) {
             return disposeNotParseWordList(notParseWordList);
         }
-        //TODO 执行时间
-        Date executeDateTime = sentenceParse.getExecuteDateTime();
-        //TODO 执行目标
-        String target = sentenceParse.getExecuteTarget();
+        //获取解析数据
+        Map<String, String> parseDataMap = sentenceParse.getParseDataMap();
+        String parseClass = ConstantSentenceGroup.GROUP_CLASS_PREFIX + parseDataMap.get(ConstantSentenceParse.WORD_TYPE_CLASS);
+        String parseTime = parseDataMap.get(ConstantSentenceParse.WORD_TYPE_TIME);
+//        Date date = new SentenceParseUtils<Date>().parseFunction(null, SentenceDateUtils.class, parseTime);
+        String parseEntity = parseDataMap.get(ConstantSentenceParse.WORD_TYPE_ENTITY);
+        String parseProperties = parseDataMap.get(ConstantSentenceParse.WORD_TYPE_PROPERTIES);
+        String parseParameter = parseDataMap.get(ConstantSentenceParse.WORD_TYPE_PARAMETER);
         //解析、返回
-        String executeType = ConstantSentenceGroup.GROUP_CLASS_PREFIX + sentenceParse.getExecuteClass();
-        String executeContent = sentenceParse.getExecuteMethod();
-        String executeParameter = sentenceParse.getExecuteParameter();
-        String executeResult = new SentenceParseUtils<String>().parseFunction(null, executeType, executeContent, target);
+        String[] parameters = new String[]{parseEntity, parseProperties};
+        String executeResult = new SentenceParseUtils<String>().parseFunction(null, parseClass, "propertiesValue", parameters);
         return executeResult;
     }
 
     private String disposeNotParseWordList(List<String> notParseWordList) {
-        StringBuffer stringBuffer = new StringBuffer("：");
+        StringBuffer stringBuffer = new StringBuffer("无法理解：");
         for (int i = 0; i < notParseWordList.size(); i++) {
             stringBuffer.append(notParseWordList.get(i));
             if (i < notParseWordList.size() - 1) {

@@ -67,17 +67,17 @@ public class SentenceParseUtils<T> {
      * @param object
      * @param className
      * @param methodName
-     * @param parameter
+     * @param parameters
      * @return T
      * @author MaoHangBin
      * @description 反射调用类方法（有参数）
      * @date 2019/12/19 15:12
      **/
-    public T parseFunction(Object object, String className, String methodName, String parameter) {
+    public T parseFunction(Object object, String className, String methodName, String[] parameters) {
         try {
             Class<?> clazz = Class.forName(className);
-            Method method = clazz.getMethod(methodName, String.class);
-            T invoke = (T) method.invoke(object, parameter);
+            Method method = clazz.getMethod(methodName, String[].class);
+            T invoke = (T) method.invoke(object, (Object) parameters);
             return invoke;
         } catch (Exception e) {
             e.printStackTrace();
