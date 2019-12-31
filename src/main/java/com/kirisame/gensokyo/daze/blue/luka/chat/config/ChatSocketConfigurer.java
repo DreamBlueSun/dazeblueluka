@@ -17,6 +17,6 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
 public class ChatSocketConfigurer implements WebSocketConfigurer {
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry webSocketHandlerRegistry) {
-        webSocketHandlerRegistry.addHandler(new ChatHandler(), "luKaChat/*").addInterceptors(new ChatInterceptor());
+        webSocketHandlerRegistry.addHandler(new ChatHandler(), "luKaChat/*").addInterceptors(new ChatInterceptor()).setAllowedOrigins("*");
     }
 }

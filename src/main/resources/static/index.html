@@ -7,26 +7,26 @@
     <script src="common/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="common/js/path.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript">
-        var websocket = null;
+        var web_socket = null;
 
         function abc() {
-            // 初始化websocket
+            // 初始化webSocket
             var userName = document.getElementById("userName").value;
-            //判断浏览器是否支持websocket
+            //判断浏览器是否支持webSocket
             if ('WebSocket' in window) {
-                var url = "ws://" + document.location.host + pathHead + "luKaChat/" + "/" + userName;
+                var url = "ws://" + document.location.host + pathHead + "luKaChat/" + userName;
                 console.log(url);
-                websocket = new WebSocket(url);
-                websocket.onopen = function () {
+                web_socket = new WebSocket(url);
+                web_socket.onopen = function () {
                     setMessage("连接成功")
                 }
-                websocket.onclose = function () {
+                web_socket.onclose = function () {
                     setMessage("连接关闭")
                 }
-                websocket.onerro = function () {
+                web_socket.onerro = function () {
                     setMessage("连接出错")
                 }
-                websocket.onmessage = function (message) {
+                web_socket.onmessage = function (message) {
                     setMessage(message.data)
                 }
 
@@ -43,8 +43,8 @@
 
 
         function close() {
-            if (websocket != null) {
-                websocket.close()
+            if (web_socket != null) {
+                web_socket.close()
             }
         }
 
@@ -52,9 +52,9 @@
         function sendmessage() {
             //获取要发送的内容
             var msg = document.getElementById("content").value;
-            if (websocket != null) {
+            if (web_socket != null) {
                 var message = '{"content":"' + msg + '"}';
-                websocket.send(message)
+                web_socket.send(message)
             }
 
         }
