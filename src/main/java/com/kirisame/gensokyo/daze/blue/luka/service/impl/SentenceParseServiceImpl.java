@@ -84,7 +84,7 @@ public class SentenceParseServiceImpl implements SentenceParseService {
                 }
             }
             sentenceParse.setParseDataMap(parseMap);
-            //处理未解析的数据
+            //处理解析后的剩余数据
             while (sentence.contains(nullField)) {
                 sentence = sentence.replace(nullField, replaceField);
             }
@@ -94,13 +94,14 @@ public class SentenceParseServiceImpl implements SentenceParseService {
             if (StringUtils.endsWith(sentence, replaceField)) {
                 sentence = StringUtils.substring(sentence, 0, sentence.length() - 1);
             }
-            if (sentence.length() > 0) {
-                if (StringUtils.endsWith(sentence, replaceField)) {
-                    sentence = sentence.substring(0, sentence.length() - 1);
-                }
-                List<String> notParseWordList = Arrays.asList(sentence.split(replaceField));
-                sentenceParse.setNotParseWordList(notParseWordList);
+        }
+        //加入未解析的数据集合
+        if (sentence.length() > 0) {
+            if (StringUtils.endsWith(sentence, replaceField)) {
+                sentence = sentence.substring(0, sentence.length() - 1);
             }
+            List<String> notParseWordList = Arrays.asList(sentence.split(replaceField));
+            sentenceParse.setNotParseWordList(notParseWordList);
         }
         return sentenceParse;
     }

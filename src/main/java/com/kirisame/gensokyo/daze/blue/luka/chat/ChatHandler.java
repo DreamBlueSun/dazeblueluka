@@ -60,16 +60,7 @@ public class ChatHandler extends TextWebSocketHandler {
         //发送过来的消息
         String receiveContent = (String) jsonObject.get("content");
         //处理消息
-        String receiveId = chatRecordService.receiveRecordMessage(receiveContent, 6810);
-        SentenceParse sentenceParse = parseService.parseSentence(receiveContent);
-        String replyContent = groupService.groupSentence(name, sentenceParse);
-        chatRecordService.replyRecordMessage(receiveId, replyContent, 6810);
-        if (session != null && session.isOpen()) {
-            if (StringUtils.isNotBlank(replyContent)) {
-                //发送消息
-                session.sendMessage(new TextMessage(replyContent));
-            }
-        }
+        doMessage(session, name, receiveContent);
     }
 
     @Override
@@ -85,6 +76,28 @@ public class ChatHandler extends TextWebSocketHandler {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public static void sendMessage(WebSocketSession session, String message) {
+        if (session != null && session.isOpen()) {
+            try {
+                session.sendMessage(new TextMessage(message));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void doMessage(WebSocketSession session, String name, String receiveContent) throws IOException {
+        if (StringUtils.isNotBlank(receiveContent)) {
+            String receiveId = chatRecordService.receiveRecordMessage(receiveContent, 6810);
+            SentenceParse sentenceParse = parseService.parseSentence(receiveContent);
+            String replyContent = groupService.groupSentence(name, sentenceParse);
+            chatRecordService.replyRecordMessage(receiveId, replyContent, 6810);
+            sendMessage(session, replyContent);
+        } else {
+            sendMessage(session, "...");
         }
     }
 
